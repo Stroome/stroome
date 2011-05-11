@@ -1,0 +1,78 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", admins_users_path  %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", admins_user_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Username:</b>
+          <%= @user.username %>
+        </p>
+
+        <p>
+          <b>Email:</b>
+          <%= @user.email %>
+        </p>
+
+        <p>
+          <b>First name:</b>
+          <%= @user.first_name %>
+        </p>
+
+        <p>
+          <b>Last name:</b>
+          <%= @user.last_name %>
+        </p>
+
+        <p>
+          <b>Location:</b>
+          <%= @user.location %>
+        </p>
+
+        <p>
+          <b>About me:</b>
+          <%= @user.about_me %>
+        </p>
+
+        <p>
+          <b>Show name to public?</b>
+          <%= @user.is_public %>
+        </p>
+      
+        <p>
+          <b>Reset password token:</b>
+          <%= @user.reset_password_token %>
+        </p>
+
+        <p>
+          <b>Remember created at:</b>
+          <%= @user.remember_created_at %>
+        </p>
+
+        <p>
+          <b>Sign in count:</b>
+          <%= @user.sign_in_count %>
+        </p>
+
+        <p>
+          <b>Current sign in at:</b>
+          <%= @user.current_sign_in_at %>
+        </p>
+
+        <p>
+          <b>Last sign in at:</b>
+          <%= @user.last_sign_in_at %>
+        </p>
+
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_admins_user_path(@user), :class => "button" %> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

@@ -1,0 +1,117 @@
+<div id="results">
+  <ul class="p-0 m-0 l-ls-n border-b18f">
+  <%
+    len = @search.results.count 
+    running = 0
+  %>
+  <% @search.each_hit_with_result do |hit, entry| %>
+    <%
+      running += 1
+
+      if entry.instance_of? InbinClipRef
+        entry = entry.clip
+      end
+
+      _is_clip = entry.instance_of? Clip
+
+      if _is_clip
+        _path = clip_path(entry)
+        _absolute_url = clip_url(entry)
+      else
+        _absolute_url = project_url(entry)
+
+        if user_signed_in? and current_user.id == entry.user_id
+          _path = manage_project_path(entry)
+        else
+          _path = project_path(entry)
+        end
+      end
+    %>
+    <li class="line media p-v-15 m-h-0 p-h-20 <%= running == len ? 'last' : 'border-b18f'-%> ">
+
+      <div class="unit size6dot5of17">
+        <%= render(
+          :partial => 'shared/thumbnail',
+          :locals => {
+            :entry => entry,
+            :width => 337,
+            :height => 197,
+            :no_add => _is_clip ? false : true
+          }
+        ) %>
+      </div>
+      <!-- .unit -->
+
+      <div class="project-summary unit size1of4 m-r-15">
+
+        <h3 class="fs-14 f-b lh-1dot25 f-tr-cp" style="word-wrap: break-word;">
+          <%= link_to entry.title, _path %>
+        </h3>
+        <div class="fs-10 fg-999 m-b-15">
+          <div class="duration d-ib">
+            <%= to_mins entry.duration %>
+          </div>
+          <div class="rating m-l-10 d-ib">
+            <%= render :partial => 'shared/ratings_static', :locals => { :rate_object => entry } %>
+          </div>
+        </div>
+
+        <div class="m-v-5">
+          <% if _is_clip || entry.is_public? %>
+            <%= render(
+                  :partial => 'shared/like_entry_button',
+                  :locals => {
+                    :url => _absolute_url,
+                    :width => 70,
+                    :height => 25
+                  }
+            ) %>
+          <% end %>
+        </div>
+
+        <p class="m-b-15"><%= entry.description %></p>
+        <p class="m-b-15 lh-1dot5">
+          Created By: <br />
+          <a rel="profile" href="<%= profile_path(entry.user) %>">
+            <%= image_tag entry.user.picture_url, :class => "thumb", :width => 40, :height => 40 %>
+          </a><br />
+          <%= link_to entry.user.username, profile_path(entry.user), :rel => 'profile' %>
+        </p>
+      </div>
+      <!-- .unit project summary -->
+
+      <div class="unit size1of5 lh-1dot25">
+        <% if _is_clip %>
+          <h5>Clip Stats</h5>
+          <ul class="m-0">
+            <li>Uploaded On: <%= date entry.created_at %></li>
+            <li>Used in: <%= pluralize entry.total_used, 'Project' %></li>
+            <li>Shared by: <%= entry.total_shared %></li>
+            <li>Liked by: <%= entry.total_likes %></li>
+          </ul>
+        <% else %>
+          <h5>Project Stats</h5>
+          <ul class="m-0">
+            <li>Last Modified: <%= date entry.updated_at %></li>
+            <li>Initiated On: <%= date entry.created_at %></li>
+            <li>Collaborators: <%= entry.total_members %></li>
+            <li>Remixed by: <%= entry.total_remixed %></li>
+            <li>Shared by: <%= entry.total_shared %></li>
+            <li>Liked by: <%= entry.total_likes %></li>
+          </ul>
+        <% end %>
+      </div>
+      <!-- .unit -->
+    </li>
+  <% end %>
+  </ul>
+
+  <div class="p-t-15 p-b-10">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals  => { :results => @search.results }
+    ) %>
+  </div>
+</div>
+<script> if (window.FB) { FB.XFBML.parse(document.getElementById("results")); }</script>
+<%= render :partial => "shared/bind_lightbox_to_links" %>

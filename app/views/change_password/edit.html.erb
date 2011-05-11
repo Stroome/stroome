@@ -1,0 +1,79 @@
+
+<div class="bar bg-black"></div>
+
+<h2 class="fg-shinyblue border-b18f p-10 m-b-5 fs-14">
+  Change Password
+</h2>
+
+<div class="m-10">
+<%= form_for(
+  @user, 
+  :url => change_password_path,
+  :html => {
+    :method => :put, 
+    :remote => true, 
+    :id => 'change_password_form'
+  }
+) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="notice">
+      <ul class="nobullet">
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label(
+      :current_password,
+      :class => 'f-b f-tr-cp'
+    ) %>
+    <%= f.password_field(
+      :current_password, 
+      :validate => 'required:true',
+      :class => 'textinput'
+    ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label(
+      :password,
+      :class => 'f-b f-tr-cp'
+    ) %>
+    <%= f.password_field(
+      :password,
+      :validate => 'required:true',
+      :class => 'textinput'
+    ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label(
+      :password_confirmation,
+      :class => 'f-tr-cp f-b'
+    ) %>
+    <%= f.password_field(
+      :password_confirmation, 
+      :validate => "{required:true, equalTo:'#user_password'}",
+      :class => 'textinput'
+    ) %>
+  </div>
+
+  <div class="actions p-v-10">
+    <%= f.submit(
+      'Change Password',
+      :class => 'btn-blueg m-r-10'
+    ) %> 
+    <a href="javascript:$.fancybox.close();">Cancel</a>
+    <p class="small hidden">* Re-login is required after password changed successfully.</p>
+  </div>
+<% end %>
+</div>
+<% content_for :script do %>
+<script>$('#change_password_form').validate();</script>
+<% end %>
+<% if request.xhr? %> 
+ <%= yield :script %>
+<% end %>

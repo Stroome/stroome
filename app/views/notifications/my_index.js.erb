@@ -1,0 +1,5 @@
+$("#my-notification-results").replaceWith(
+  '<%= escape_javascript(
+    render(:file => "/notifications/my_index.html.erb")
+  ) %>'
+);

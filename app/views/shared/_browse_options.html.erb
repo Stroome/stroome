@@ -1,0 +1,49 @@
+<ul class="nav group-nav clearfix f-ta-c tk-pnc f-sb fs-20 f-tr-lc pos-r m-h-15">
+  <li class="<%= params[:controller] == 'projects' ? 'active' : '' %>">
+    <div class="bar bg-black"></div>
+    <%= link_to_unless(
+      params[:controller] == 'projects',
+      'Projects',
+      { :controller => :projects,
+        :action => :index,
+        :q => params[:q]}
+    ) %>
+  </li>
+  <li class="<%= 'last' if not user_signed_in? and not FBT.enable_group %> <%= params[:controller] == 'clips' ? 'active' : '' %>">
+    <div class="bar bg-black"></div>
+    <%= link_to_unless(
+      params[:controller] == 'clips',
+      'Clips',
+      { :controller => :clips,
+        :action => :index,
+        :q => params[:q] }
+    ) %>
+  </li>
+
+  <% if FBT.enable_group %>
+  <li class="<%= 'last' unless user_signed_in? %> <%= params[:controller] == 'groups' ? 'active' : '' %>">
+    <div class="bar bg-black"></div>
+    <%= link_to_unless(
+      params[:controller] == 'groups',
+      'Groups',
+      { :controller => :groups,
+        :action => :index,
+        :q => params[:q] }
+    ) %>
+  </li>
+  <% end %>
+
+  <% if user_signed_in? %>
+  <li class="last <%= params[:controller] == 'profiles' ? 'active' : '' %>">
+    <div class="bar bg-black"></div>
+    <%= link_to_unless(
+      params[:controller] == 'profiles',
+      'Members',
+      { :controller => :profiles,
+        :action => :index,
+        :q => params[:q] }
+    ) %>
+  </li>
+  <% end %>
+
+</ul>

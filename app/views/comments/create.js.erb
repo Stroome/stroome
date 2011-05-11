@@ -1,0 +1,4 @@
+$.get("<%= @comments_path %>", function(result) {
+    $("#comment_list").replaceWith( result );
+});
+$('#comment_form')[0].reset();

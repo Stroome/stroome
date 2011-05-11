@@ -1,0 +1,35 @@
+<div id="recommended_groups_results">
+  <ul class="p-0 m-0 l-ls-n">
+    <% if @groups.size > 0 %>
+    <%   @groups.each do |group| %>
+    <li class="media">
+      <a href="<%= group_path(group) %>" class="img m-r-10">
+        <%= image_tag(
+            group.picture_url,
+         ) %>
+      </a>
+      <div class="bd">
+        <div class="fs-14 f-b">
+          <%= link_to group.title, group_path(group) %>
+        </div>
+        <p class="p-t-20">
+          <%= group.description %>
+        </p>
+      </div>
+    </li>
+    <%   end %>
+    <% else %>
+    <li class="m-h-10 p-v-10">
+     No recommended group.
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="border-b18f"></div>
+  <div class="p-v-10 m-1">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals => { :results => @groups }
+    ) %>
+  </div>
+</div>

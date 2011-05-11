@@ -1,0 +1,8 @@
+<% if not user_signed_in? %>
+<script>
+  $("#container").delegate("a[rel='profile']", "click", function(ev) {
+    ev.preventDefault();
+    alert("Sorry, you must be logged in / registered to view this member's profile.");
+  });
+</script>
+<% end %>

@@ -1,0 +1,40 @@
+<%
+  _title = "Browse"
+  
+  if not params[:q].blank?
+    _title = ["Search Results for ", "\"#{ truncate( params[:q], :length => 100 ) }\""].join
+  end
+%>
+<% content_for :title, _title %>
+<%= content_for :content do %>
+<div id="main" role="main" class="p-v-10 p-b-15">
+
+  <h2 class="_header fs-29 m-h-15 m-b-20 f-tr-cp">
+    <%= _title %>
+  </h2>
+  <%= render :partial => 'shared/browse_options' %>
+
+  <div class="m-h-15">
+
+    <div class="widget-box pos-r">
+
+      <div class="p-v-5">
+        <div class="m-h-20">
+          <%= yield :result_filter %>
+        </div>
+
+        <%= yield :result_list %>
+      </div>
+
+      <div class="foot pos-a">
+        <div class="left-foot fl-l"></div>
+        <div class="right-foot fl-r"></div>
+        <div class="center-foot"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- #main -->
+<% end %>
+<%= render :file => 'layouts/application' %>

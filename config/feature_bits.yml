@@ -1,0 +1,18 @@
+development:
+  enable_project_invite_user: true  # project can invite existing users
+  enable_group: true                # enable all group-related features
+  enable_activity_stream: true      # enable all activity stream related features
+test:
+  enable_project_invite_user: true
+  enable_group: true
+  enable_activity_stream: true
+
+staging:
+  enable_project_invite_user: true
+  enable_group: true
+  enable_activity_stream: true
+
+production:
+  enable_project_invite_user: false
+  enable_group: false
+  enable_activity_stream: false

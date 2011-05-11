@@ -1,0 +1,30 @@
+<div class="d-ib f-b">Rate it </div>
+<div class="ratings_container d-ib m-l-5">
+  <%= ratings_for(
+    rate_object,
+    :small => true,
+    :force_static => !(
+      current_user && rate_object && 
+      rate_object.rate_by(current_user).nil?
+    )
+  ) %>
+</div>
+<br />
+<span class="fg-999 fs-9 f-nb">
+  (<%= rate_object.total_rates %> ratings)
+</span>
+<% content_for :script do %>
+<script>
+  $(".rate_link").click(function(event) {
+    event.preventDefault();
+
+    $.post(
+      $(this).attr("href"), 
+      function(data) {
+        $(".ratings_container").html(data);
+        $(".ajaxful-rating-wrapper").fadeOut().fadeIn();
+      }
+    );
+  });
+</script>
+<% end %>

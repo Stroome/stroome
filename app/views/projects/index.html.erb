@@ -1,0 +1,11 @@
+<% content_for :result_filter do %>
+  <%= render(
+    :partial => 'shared/results_filter',
+    :locals => {
+      :sort_options => ResultsHelper::SORT_OPTIONS_FOR_BROWSE
+  }) %>
+<% end %>
+
+<% content_for :result_list do %>
+  <%= render :partial => 'shared/project_n_clip_results' %>
+<% end %>

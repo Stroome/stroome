@@ -1,0 +1,15 @@
+<div>
+  <ul>
+  <% @notifications.each do |notification| %>
+    <li id="notification_<%= notification.id %>">
+      <%= render :partial => "notification",
+                 :locals  => {
+                   :notification => notification
+                 } %>
+    </li>
+  <% end %>
+  <% if @notifications.blank? %>
+    <li>No new notification yet.</li>
+  <% end %>
+  </ul>
+</div>

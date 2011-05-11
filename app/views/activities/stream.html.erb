@@ -1,0 +1,99 @@
+<div id="activity_stream_results" <%= raw 'class="widget-box pos-r border-b18f"' unless params[:noborder] %>>
+
+  <div class="m-h-15">
+    <% form_tag @filter_path,
+                :id => 'activity_stream_filter_form',
+                :method => :get,
+                :remote => true do %>
+    <ul class="nav m-0 p-v-15 fg-shinyblue">
+      <% @filter_options.each_with_index do |option, index| %>
+      <li class="p-h-15 <%= 'first' if index == 0 %> <%= 'last' if index == (@filter_options.size - 1) %>">
+        <%= radio_button_tag(
+            'filter',
+            option[1],
+            params[:filter] == option[1],
+            :class => 'checked-label-highlight visuallyhidden'
+        ) %>
+        <%= label_tag "filter_#{ option[1] }", option[0] %>
+      </li>
+      <% end #endeach %>
+    </ul>
+      <%= hidden_field_tag(:noborder, params[:noborder]) if params[:noborder] %>
+    <% end #endform %>
+  </div>
+
+  <ul class="p-0 m-0 l-ls-n">
+
+    <% @stream.each do |entry| %>
+
+    <%
+        object = entry.object
+        entry_path = case object
+          when User    then profile_path(object)
+          when Project then project_path(object)
+          when Clip    then clip_path(object)
+          when Group   then group_path(object)
+        end
+
+    %>
+    <li class="media">
+      <div class="img m-l-5 m-r-15 of-h" style="width:80px;height:65px">
+        <a href="<%= entry_path %>">
+        <%= image_tag(
+              entry.picture_url,
+              :width => "80px"
+            ) %>
+        </a>
+      </div>
+
+      <div class="bd">
+        <h3 class="fs-14 f-b m-b-5 f-tr-cp">
+          <%= link_to entry.title, entry_path %>
+        </h3>
+
+        <p><%= entry.message %></p>
+        <p class="fs-11 fg-999">
+          <%= time_ago_in_words( entry.created_at ) %> ago
+        </p>
+      </div>
+
+    </li>
+    <% end #endeach %>
+
+    <% if @stream.empty? %>
+    <li class="m-h-10 p-v-10">
+      No recent activities.
+    </li>
+    <% end #endif %>
+  </ul>
+
+  <div class="border-b18f"></div>
+  <div class="p-v-10 m-1">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals => { :results => @stream }
+    ) %>
+  </div>
+
+  <div class="foot pos-a">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>
+
+<% content_for :script do %>
+<script>
+$(document).ready(function () {
+  var $form = $('#activity_stream_filter_form');
+
+  $form.find(":radio").bind("change", function() {
+    $form.submit();
+  })
+});
+</script>
+<% end %>
+
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

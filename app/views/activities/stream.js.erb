@@ -1,0 +1,5 @@
+$("#activity_stream_results").replaceWith(
+  '<%= escape_javascript(
+    render(:file => "/activities/stream.html.erb")
+  ) %>'
+);

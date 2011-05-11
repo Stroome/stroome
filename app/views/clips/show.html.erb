@@ -1,0 +1,201 @@
+<% content_for :title, @clip.title %>
+<%= render :partial => "shared/open_graph_meta_tags",
+           :locals => {
+               :title => @clip.title,
+               :url => clip_url(@clip),
+               :image_url => @clip.thumbnail_url,
+               :description => @clip.description
+           } %>
+
+<div id="main" role="main" class="m-h-15">
+  <h2 class="_header fs-29 p-h-10 p-v-5 m-b-20">
+    <%= @clip.title %> 
+    <span class="fs-14 fg-333">by </span>
+    <%= link_to(
+      @clip.user.username,
+      profile_path(@clip.user),
+      :class => 'fs-14 fg-shinyblue'
+    ) %>
+  </h2>
+
+  <div class="line">
+
+    <div class="unit size2of3">
+      
+      <div class="widget-box pos-r bg-f0f0f0 m-b-20">
+
+        <div class="m-10">
+
+          <%= render(
+                :partial => 'shared/video_player',
+                :locals => {
+                  :video_id => @clip.video_id,
+                  :width => 633,
+                  :height => 369#423
+                }
+          ) %>
+
+          <div class="line l-ls-n m-t-10">
+            <div class="unit size2of3 p-t-5">
+              <div class="social-buttons span-15 last">
+                <ul class="hlist">
+                  <li>
+                    <%= render(
+                          :partial => 'shared/like_entry_button', 
+                          :locals => { 
+                            :url => clip_url,
+                            :width => 150,
+                            :height => 25
+                          }
+                    ) %>
+                  </li>
+                  <li class="m-r-20">
+                    <%= render(
+                      :partial => 'shared/rate_it',
+                      :locals => { :rate_object => @clip }
+                    ) %>
+                  </li>
+                  <li class="f-b">
+                    Views: <%= @clip.total_views %>
+                  </li>
+                </ul>
+                <br/>
+              </div>
+              <div class="description span-6">
+                <h3>Description</h3>
+                <p><%= @clip.description %></p>
+              </div>
+            </div>
+            <!-- .unit -->
+
+            <div class="unit size1of3">
+              <div class="p-3 bg-white border-1-dedede m-b-10">
+                <%= render(
+                  :partial => 'shared/share_buttons',
+                  :locals  => {
+                    :url => clip_url,
+                    :title => @clip.title,
+                    :description => @clip.description
+                  }
+                ) %>
+              </div>
+              <div class="actions span-5 last">
+                <% if !user_signed_in? %>
+                  <%= link_to(
+                    t("promote_sign_up_with_clip"),
+                    new_user_registration_path,
+                    { :class => 'btn-blueg d-b m-b-10 w-100p' }
+                  ) %>
+                <% else %>
+                  <%= link_to(
+                    t("new_project_with_clip"),
+                    new_project_path( :with_clip => @clip.id ),
+                    { :class => 'open-lightbox btn-blueg d-b m-b-10 w-100p'}
+                  )%>
+                  <%= link_to(
+                    t("add_to_clip_bin"),
+                    new_inbin_clip_ref_path( :clip_id => @clip.id ),
+                    { :class => "open-lightbox btn-blueg d-b m-b-10 w-100p" }
+                  ) %>
+                <% end %>
+              </div>
+            </div>
+            <!-- .unit -->
+
+          </div>
+          <!-- .line -->
+
+          <div class="line l-ls-n p-b-15">
+            <div class="unit size2of3">
+              <ul class="m-0 fs-10 fg-999 lh-1dot15">
+                <li>
+                  <span class="f-tr-uc">File Under: </span>
+                  <%= clip_topic_links @clip.topics %>
+                </li>
+                <li>
+                  <span class="f-tr-uc">Tags: </span>
+                  <%= clip_tag_links @clip.tags %>
+                </li>
+                <%= yield :more_label_list %>
+              </ul>
+              <div class="m-t-10">
+                <a rel="license" target="_blank"
+                   title="This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."
+                   href="http://creativecommons.org/licenses/by-sa/3.0/">
+                <%= image_tag "ccbysa.png",
+                      :alt => "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.",
+                      :width => "90px" %>
+                </a>
+              </div>
+            </div>
+            <!-- .unit -->
+
+            <div class="unit size1of3 fs-10 fg-999">
+              <ul class="m-0">
+                <li>Times Used: <%= @clip.total_used %></li>
+                <li>Shared by: <%= @clip.total_shared %></li>
+                <li>Liked by: <%= @clip.total_likes %></li>
+              </ul>
+            </div>
+            <!-- .unit -->
+          </div>
+        </div>
+        
+        <div class="foot pos-a bg-f0f0f0">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+      </div>
+      <!-- .widget-box -->
+
+      <div class="m-b-20">
+        <div id="comment_widget"></div>
+      </div>
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3">
+      <div class="m-l-25">
+
+        <%= render(
+          :partial => 'shared/profile_box',
+          :locals => {
+            :is_profile_owner=> (user_signed_in? and @clip.user.id == current_user.id),
+            :user => @clip.user
+          }
+        ) %>
+
+        <div id="related-tabs">
+          <%= render(
+            :partial => 'shared/make_tabs',
+            :locals => {
+              :tab_items => [
+                {:title => 'More From This User', :url => more_from_owner_clip_path(@clip)},
+                {:title => 'Related Clips', :url => more_like_this_clip_path(@clip)}
+              ]
+            }
+          ) %>
+        </div>
+
+      </div>
+    </div>
+    <!-- .unit -->
+
+  </div>
+  <!-- .line -->
+
+</div>
+<!-- #main -->
+<%= render( :partial => 'shared/bind_tabs',
+      :locals => {
+        :tabs_container_selector => "#related-tabs"
+      }
+    ) %>
+<% content_for :script do %>
+<script>
+$(document).ready(function () {
+  $("#comment_widget").load('<%= clip_comments_path(@clip, :header => "yes") %>');
+});
+</script>
+<% end %>

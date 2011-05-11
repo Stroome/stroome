@@ -1,0 +1,5 @@
+$('#comment_list').replaceWith(
+  '<%= escape_javascript(
+      render :template => 'comments/list.html.erb'
+  ) %>'
+);

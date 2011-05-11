@@ -1,0 +1,220 @@
+<div id="main" role="main" class="m-h-15 p-t-5 p-b-10">
+
+  <h2 class="_header fs-29 m-b-20 f-tr-cp">
+    <%= @group.title %>
+  </h2>
+
+  <div class="line">
+
+    <div class="unit size2of3">
+      <div class="widget-box pos-r bg-f0f0f0 m-b-20">
+
+        <div class="media m-10">
+
+          <div class="unit size1of5">
+            <div class="thumb d-b pos-r" style="width: 128px; height: 129px;">
+              <%= image_tag(
+                    @group.picture_url,
+                    :class =>"m-center d-b"
+              ) %>
+            </div>
+          </div>
+          <!-- .unit -->
+
+          <div class="unit size1of2 m-r-15">
+
+            <p class="m-b-20">
+              <%= @group.description %>
+            </p>
+
+            <p class="fs-11 fg-999">
+              Interests: <%= group_topic_links @group.topics %>
+            </p>
+
+          </div>
+          <!-- .unit project summary -->
+
+
+          <div class="unit size1of4 lh-1dot25">
+            <ul class="l-ls-n m-0">
+              <li>Total Members: <%= @group.total_members %></li>
+              <li>Total Projects: <%= @group.total_projects %></li>
+              <li>Total Views: <%= @group.total_views %></li>
+              <li>Total Likes: <%= @group.total_likes %></li>
+              <li>Created: <%= date @group.created_at %></li>
+              <li>Created By: <%= link_to @group.owner.username, profile_path(@group.owner), :rel => "profile" %></li>
+            </ul>
+
+          </div>
+          <!-- .unit -->
+
+        </div>
+
+        <div class="foot pos-a bg-f0f0f0">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+      </div>
+      <!-- .widget-box -->
+
+      <div id="bottom-tabs" class="m-t-10">
+      <%
+         tab_items = [
+           {
+             :title => 'Activity Stream',
+             :url => FBT.enable_activity_stream ? group_activities_path(@group) : pending_activity_stream_groups_path
+           }
+         ]
+
+         if @group.public_membership? or
+             @group.owner? current_user or
+             @group.member? current_user
+           
+           tab_items += [
+             {
+               :title => 'Comments',
+               :url => group_comments_path(@group)
+             },
+             {
+               :title => "Projects",
+               :url => group_projects_path(@group)
+             }
+           ]
+         end
+      %>
+      <%= render(
+          :partial => 'shared/make_tabs',
+          :locals => {
+            :tab_items => tab_items
+          }
+        ) %>
+      </div>
+      <%= render(
+        :partial => 'shared/bind_tabs',
+        :locals => {
+          :tabs_container_selector => "#bottom-tabs"
+        }
+      ) %>
+
+
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3">
+      <div class="m-l-25">
+        <div class="widget-box pos-r m-b-20">
+
+          <div class="bar bg-black m-1"></div>
+
+          <div class="m-h-20 p-v-15">
+            <p class="m-b-20">
+              <strong>
+              GROUP MEMBERSHIP: <%= @group.membership.titlecase %>
+              </strong>
+            </p>
+            <% if @group.owner? current_user %>
+              <%= link_to(
+                    "Edit Group Info",
+                    edit_group_path(@group),
+                    {class: 'open-lightbox btn-blueg m-b-10 w-98p'}
+              ) %>
+              <%= link_to(
+                    "Delete Group",
+                    @group,
+                    :confirm => 'Are you sure?',
+                    :method  => :delete,
+                    :class => 'btn-blueg m-b-10 w-98p'
+              ) %>
+            <% elsif @group.has_member? current_user %>
+              <%= link_to(
+                    "Unjoin Group",
+                    unjoin_group_path(@group),
+                    :method => :post,
+                    :class => 'btn-blueg m-b-10 w-98p'
+              ) %>
+            <% elsif user_signed_in? %>
+              <% if @group.public_membership? %>
+                <%= link_to(
+                      "Join Group",
+                      join_group_path(@group),
+                      :method => :post,
+                      :class => 'btn-blueg m-b-10 w-98p'
+                ) %>
+
+                <% if FBT.enable_activity_stream %>
+
+                  <% if UserFollowing.following_group? current_user, @group %>
+                    <%= render :partial => "follows/unfollow_group", :locals => {:following => @group} %>
+                  <% else %>
+                    <%= render :partial => "follows/follow_group", :locals => {:following => @group} %>
+                  <% end %>
+
+                <% end #endif FBT %>
+
+              <% elsif @group.private_membership? %>
+                <% if @group.has_pending_request_from? current_user %>
+                  <div class="m-h-20 p-v-15">
+                    Membership Pending for Approval
+                  </div>
+                <% else %>
+                <%= link_to(
+                      "Request Membership",
+                      request_join_group_path(@group),
+                      :method => :post,
+                      :class => 'btn-blueg m-b-10 w-98p'
+                ) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="foot pos-a">
+            <div class="left-foot fl-l"></div>
+            <div class="right-foot fl-r"></div>
+            <div class="center-foot"></div>
+          </div>
+        </div>
+
+        <div class="related">
+          <div id="group-members" class="widget-box pos-r m-b-20">
+
+            <div class="bar bg-red m-1"></div>
+
+            <div class="clearfix">
+              <h3 class="_header fg-333 fs-20 p-v-5 f-tr-lc p-h-15">
+                Members
+              </h3>
+              <% if @group.owner? current_user %>
+              <%= link_to(
+                    "Invite Others",
+                    invite_to_group_path(@group),
+                    :class => "open-lightbox btn-blueg fs-16 d-b fl-r"
+              ) %>
+              <% end %>
+            </div>
+
+            <div id="group_members_container"></div>
+
+            <div class="foot pos-a">
+              <div class="left-foot fl-l"></div>
+              <div class="right-foot fl-r"></div>
+              <div class="center-foot"></div>
+            </div>
+
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+    <!-- .unit -->
+
+  </div>
+  <!-- .line -->
+
+</div>
+<!-- #main -->
+<% content_for :script do %>
+<script>$('#group_members_container').load('<%= group_members_path(@group) %>');</script>
+<% end %>

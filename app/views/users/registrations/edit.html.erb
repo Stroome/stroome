@@ -1,0 +1,7 @@
+<div id="main" role="main" class="m-h-15 p-v-10">
+  <% content_for :title do %>Update My Information<% end %>
+
+  <h2 class="_header fs-29 m-b-20">Update My Information</h2>
+  <%= render :partial => 'shared/messages' %>
+  <%= render :partial => 'form', :locals =>{ :form_method => :put } %>
+</div>

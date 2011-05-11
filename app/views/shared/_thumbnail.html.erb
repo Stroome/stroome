@@ -1,0 +1,44 @@
+<%
+  height = height || 55
+  width = width || 95
+  no_add = true unless local_assigns.has_key? :no_add
+  options = options || []
+  _is_clip = entry.instance_of? Clip
+
+  if _is_clip
+    _path = clip_path(entry)
+  else
+    _path = project_path_by_current_user(entry, current_user)
+
+  end
+
+  _options = ""
+  options.each do |item|
+    _options += "#{item[:title]}=#{item[:content]} "
+  end
+%>
+<div class="thumb d-b pos-r bg-black of-h" style="width: <%= width %>px;height: <%= height %>px;">
+  <a title="<%= entry.title %>"
+     href="<%= _path %>"
+     class="d-b"
+     style="width: <%= width %>px;height: <%= height %>px;"
+     <%= _options %>
+  >
+    <%= image_tag(
+      entry.thumbnail_url + "/width/#{width}/height/#{height}/type/2/bgcolor/000000",
+      :class => 'm-center d-b'
+    ) %>
+  </a>
+
+  <% if user_signed_in? && _is_clip && !no_add %>
+    <%= link_to(
+      "+", new_inbin_clip_ref_path(:clip_id => entry.id),
+      { :class => "open-lightbox d-b wh-12 bg-shinyblue fg-w f-b pos-bl f-ta-c",
+        :title => 'Add to Clip Bin' }
+    ) %>
+  <% end %>
+
+  <span class="pos-br p-v-3 p-h-6 bg-black fg-w fs-10">
+    <%= to_short_mins entry.duration %>
+  </span>
+</div>

@@ -1,0 +1,3 @@
+$('#group_projects_results').parent().load(
+  '<%= group_projects_path(:group_id => params[:group_id], :page => params[:page]) %>'
+);

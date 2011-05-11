@@ -1,0 +1,8 @@
+<%= render(
+  :partial=> "shared/related_results",
+  :locals => {
+    :entry_path_callback => lambda {|entry, current_user| project_path_by_current_user(entry, current_user) },
+    :list_id => "morefromowner-result-list",
+    :entries => @search.results
+  }
+) %>

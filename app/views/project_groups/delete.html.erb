@@ -1,0 +1,33 @@
+<div style="width:300px">
+
+  <div class="bar bg-black m-1"></div>
+
+  <h2 class="_header p-h-10 p-v-5 fs-20">
+    Remove Group
+  </h2>
+
+<%= form_tag(
+        project_group_path(@project_group),
+        :method => :delete,
+        :remote => true) do |f| %>
+
+  <div class="m-10" style="min-height: 100px;">
+    <p>
+      Are you sure you want to remove
+      <strong><%= @project_group.group.title %></strong>
+      from this project?
+    </p>
+  </div>
+  <div class="border-b18f m-1"></div>
+
+  <div class="action f-ta-r p-10">
+    <%= submit_tag(
+      "OK",
+      :class => "btn-blueg m-r-15",
+      :style => 'width: 80px'
+    ) %>
+    <%= link_to "Close", "javascript:$.fancybox.close();" %>
+  </div>
+    
+<% end %>
+</div>

@@ -1,0 +1,20 @@
+<%
+  if local_assigns.has_key? :topics
+    _topics = topics
+  else
+    _topics = Topic.all
+  end
+%>
+<ul class="l-ls-n p-0 m-0">
+  <% _topics.each do |topic| %>
+    <li class="m-b-3">
+      <%= check_box_tag(
+        field_name, 
+        topic.id,
+        field_array.include?(topic.id)
+      ) %>
+      &nbsp;
+      <%= topic.label %>
+    </li>
+  <% end %>
+</ul>

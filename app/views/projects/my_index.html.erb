@@ -1,0 +1,76 @@
+<% content_for :title do %>My Projects<% end %>
+
+<div id="main" role="main" class="p-v-10 p-b-15">
+  <h2 class="_header fs-29 m-h-15 m-b-20">My Projects</h2>
+
+  <div class="line m-h-15">
+
+    <div class="unit size2of3">
+      <div class="widget-box pos-r bg-f0f0f0">
+
+        <div class="p-v-5">
+          <div class="p-h-15">
+            <%= render( 
+                  :partial => 'shared/results_filter',
+                  :locals => {
+                    :sort_options => ResultsHelper::SORT_OPTIONS_FOR_MY_PROJECTS,
+                    :can_change_per_page => false,
+                    :can_search => false,
+                    :filter_full => true
+                  }
+            ) %>
+          </div>
+
+          <div id="results" class="results prepend-top span-15 last">
+            <%= render :partial => 'my_project_results' %>
+          </div>
+
+        </div>
+
+        <div class="foot pos-a bg-f0f0f0">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+      </div>
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3 lastUnit">
+      <div class="m-l-25">
+        <%= render(
+          :partial => 'shared/profile_box',
+          :locals => {
+            is_profile_owner: true,
+            user: current_user
+          }
+        ) %>
+
+        <div class="widget-box pos-r">
+
+          <div class="bar bg-red m-1"></div>
+
+          <h3 class="_header fg-333 fs-20 p-v-5 p-h-15 m-b-0 pos-r bg-w"
+              style="top:1px; z-index: 2;">My Clip Bin</h3>
+        </div>
+        <!-- .widget -->
+
+        <div id="userclipbin-result-list" class="m-b-20"></div>
+
+      </div>
+    </div>
+    <!-- .unit -->
+  </div>
+  <!-- .line -->
+
+</div>
+<!-- #main -->
+
+<% content_for :script do %>
+<script>
+  $('#userclipbin-result-list')
+    .load("<%= user_clip_bin_path(
+          current_user
+        ) %>");
+</script>
+<% end %>

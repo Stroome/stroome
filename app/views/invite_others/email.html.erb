@@ -1,0 +1,63 @@
+<div class="widget-box pos-r border-b18f">
+  <div class="m-h-10 p-v-10">
+    <p id="email_invite_notice" class="m-b-25">
+      &nbsp;
+    </p>
+    <p class="m-b-10">
+      Invite users that don't have an account on Stroome yet!<br/>
+      Please note - your friend will have to create an account in order to access your project.
+    </p>
+
+    <% form_tag @email_join_path,
+                :id => 'email_invite_form',
+                :method => :post,
+                :remote => true do %>
+
+      <div class="field">
+        <%= label_tag "Name" %>
+        <%= text_field_tag :name,
+            nil,
+            :validate => 'required: true',
+            :class => 'textinput w-50p'
+        %>
+      </div>
+
+      <div class="field">
+        <%= label_tag "Email" %>
+        <%= text_field_tag :email,
+            nil,
+            :validate => '{required: true, email: true}',
+            :class => 'textinput w-50p'
+        %>
+      </div>
+
+      <div class="field">
+        <%= label_tag "Message" %>
+        <br/>
+        <%= text_area_tag :message, "",
+            :validate => 'required: true',
+            :class => 'w-50p',
+            :style => 'height:80px'
+
+        %>
+      </div>
+
+      <%= submit_tag "Send",
+          :class => 'btn-blueg'
+      %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :script do %>
+<script>
+$(document).ready(function () {
+
+  $('#email_invite_form').validate();
+
+});
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

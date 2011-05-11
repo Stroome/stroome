@@ -1,0 +1,33 @@
+/* Paragraphs and font styles */
+.ec p { margin-bottom: 1.5em; word-spacing: .01em; }
+.ec em,
+.ec i { font-style: italic; }
+.ec b,
+.ec strong { display: inline; font-weight: bold; }
+
+/* Headers */
+.ec h1, .ec h2,
+.ec h3, .ec h4,
+.ec h5, .ec h6 { display: block; font-weight: 600; margin-bottom: .7em }
+
+.ec h1,
+.ec h2 { font-size: 1.4em; }
+.ec h3,
+.ec h4 { font-size: 1.1em; }
+.ec h5 { font-size: 1.1em; font-weight: normal; }
+.ec h6 { font-size: 1em; font-weight: normal; }
+
+.ec blockquote, .ec q { quotes: none; margin: 20px; }
+
+.ec a,
+.ec a:link,
+.ec a:visited, { color: #0099cc; }
+.ec a:hover,
+.ec a:focus,
+.ec a:active { color: #333; }
+
+.ec ol, .ec ul { margin-left: 2em; margin-bottom: 1em; }
+
+.side-nav ul,
+.side-nav ol { margin: 0; }
+.side-nav li { margin-bottom: 15px; }

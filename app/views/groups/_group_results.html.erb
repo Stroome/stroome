@@ -1,0 +1,62 @@
+<%
+  len = @search.results.count 
+  running = 0
+%>
+<div id="results">
+  <ul class="p-0 m-0 l-ls-n border-b18f">
+  <% @search.results.each do |group| %>
+    <% running += 1 %>
+    <li class="line media p-v-15 m-h-0 p-h-20 <%= running == len ? 'last' : 'border-b18f'-%> ">
+
+      <div class="unit size1of6">
+        <div class="thumb d-b pos-r" style="width: 128px; height: 129px;">
+          <a title="<%= group.title %>"
+             href="<%= group_path(group) %>" class="d-b">
+            <%= image_tag(
+              group.picture_url,
+              :class => 'm-center d-b'
+            ) %>
+          </a>
+        </div>
+      </div>
+      <!-- .unit -->
+
+      <div class="unit size1of3 m-r-15">
+
+        <h3 class="fs-14 f-b lh-1dot25 f-tr-cp">
+          <%= link_to group.title, group %>
+        </h3>
+
+        <p><%= group.description %></p>
+
+        <p class="fs-10 fg-999 m-b-20">
+          <span class="f-tr-uc fs-11">Interests: </span>
+          <%= group_topic_links group.topics %>
+        </p>
+
+      </div>
+      <!-- .unit project summary -->
+
+      <div class="unit size1of3 lh-1dot25">
+        <ul class="l-ls-n m-0">
+          <li>Membership: <%= group.membership.titlecase %></li>
+          <li>Total Members: <%= group.total_members %></li>
+          <li>Total Projects: <%= group.total_projects %></li>
+          <li>Total Views: <%= group.total_views %></li>
+          <li>Total Likes: <%= group.total_likes %></li>
+          <li>Created: <%= date group.created_at %></li>
+          <li>Created By: <%= link_to group.owner.username, profile_path(group.owner), :rel => "profile" %></li>
+        </ul>
+      </div>
+      <!-- .unit -->
+    </li>
+  <% end %>
+  </ul>
+
+  <div class="p-t-15 p-b-10">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals  => { :results => @search.results }
+    ) %>
+  </div>
+</div>

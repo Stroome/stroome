@@ -1,0 +1,71 @@
+<% content_for :title do %>
+  Manage Project: <%= @project.title %>
+<% end %>
+<% content_for :header do %>
+  <%= @project.title %>
+<% end %>
+<% content_for :actions do %>
+<%= link_to(
+      t("launch_editor"),
+      (@project.editor_type == 'basic' ? 
+        basic_editor_project_path(@project) : 
+        advanced_editor_project_path(@project)), 
+      {:id => 'launch-editor', :class => 'open-modalbox btn-blueg m-b-10 w-100p'}
+) %>
+<%= link_to(
+      t("edit_project"),
+      edit_project_path(@project), 
+      {class: 'open-lightbox btn-blueg m-b-10 w-100p'}
+) %>
+<%= link_to(
+      t("remix_project"),
+      new_project_path(:remix => @project.id),
+      { :class => 'open-lightbox btn-blueg m-b-10 w-100p' }
+) %>
+<%= link_to(
+      t("delete_project"),
+      @project, 
+      :confirm => 'Are you sure?', 
+      :method => :delete, 
+      :class=> 'btn-blueg m-b-10 w-100p'
+) %>
+
+<% end %>
+
+<% content_for :more_label_list do %>
+<li>
+  <span class="f-tr-uc">Project Visibility: </span>
+  <%= @project.visibility.titleize %>
+</li>
+<% end %>
+
+<% content_for :related_tabs do %>
+<div id="related-tabs">
+  <%= render(
+    :partial => 'shared/make_tabs',
+    :locals => {
+      :tab_items => [
+        {:title => 'Project Clip Bin', :url => project_clip_bin_path(@project, :add_to_project_id => @project.id)},
+        {:title => 'My Clip Bin', :url => user_clip_bin_path(current_user, :add_to_project_id => @project.id)}
+      ]
+    }
+  ) %>
+</div>
+<% end %>
+
+<%= render(
+      :partial => 'shared/bind_tabs',
+      :locals => {
+        :tabs_container_selector => "#related-tabs"
+      }
+    ) %>
+
+<% unless params[:launch_editor].blank? %>
+  <% content_for :script do %>
+  <script>
+  $(document).ready(function() {
+    setTimeout(function() {$("#launch-editor").trigger("click");}, 1000);
+  });
+  </script>
+  <% end %>
+<% end %>

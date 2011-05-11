@@ -1,0 +1,183 @@
+<div class="m-10" style="width: 400px">
+  <%= form_for(
+    @project,
+    :remote => true,
+    :html => {:id => 'project_form'}
+  ) do |f| %>
+
+    <div class="bg-lblue m-v-10 p-10">
+      <div class="clearfix">
+        <% if @project.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+            <ul>
+              <% @project.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :remixed_from_id unless params[:remix].blank? %>
+        <%= f.hidden_field :with_clip_video_id unless params[:with_clip].blank? %>
+
+        <div class="field">
+          <%= f.label(
+            :title,
+            raw('<span class="required">*</span> Project name') +
+              ( params[:remix].blank? ? "" : raw(' <span class="sidenotes">(Please retitle your remix)</span>') )
+          ) %>
+          <%= f.text_field(
+            :title,
+            :validate => 'required: true',
+            :class => 'textinput w-98p'
+          ) %>
+        </div>
+        <!-- .field -->
+
+        <div class="field">
+          <%= f.label(
+            :description,
+            raw('<span class="required">*</span> Description')
+          ) %>
+          <%= f.text_area(
+            :description, 
+            :validate => 'required: true',
+            :class => 'textinput w-98p',
+            :rows => '2'
+          ) %>
+        </div>
+        <!-- .field -->
+
+        <div class="field">
+          <%= f.label :visibility, 'Project Visibility' %>
+          <%= f.select(
+            :visibility,
+            Project::VISIBILITY_OPTIONS,
+            {},
+            { :class => 'm-t-5 d-b' }
+          ) %>
+        </div>
+        <!-- .field -->
+
+        <div class="field">
+          <label>
+            Categories 
+            <span class="sidenotes">
+              (check all boxes that apply)
+            </span>
+          </label>
+          <div class="line m-t-5 m-b-15">
+            <%
+              topics_array = [[],[]]
+              topics = Topic.all
+
+              #first list need to have more records if there are remainders
+              first_list_size = topics.count / 2 + topics.count % 2
+              running = 0
+
+              topics.each do |topic|
+                running += 1
+                topics_array[running <= first_list_size ? 0 : 1] << topic
+              end
+            %>
+            <% topics_array.each do |t| %>
+              <div class="unit size1of2">
+                <%= render(
+                  :partial => 'shared/topic_checkbox_list',
+                  :locals => {
+                    :field_name => 'project[topic_ids][]',
+                    :field_array => @project.topic_ids,
+                    :topics => t
+                  }
+                ) %>
+              </div>
+              <!-- .unit -->
+            <% end %>
+          </div>
+          <!-- .line -->
+        </div>
+        <!-- .field -->
+
+        <div class="field">
+          <%= f.label(:tags, raw('Tags <span class="sidenotes">(words all boxes by commas)</span>') ) %>
+          <%= f.text_field( :tags, :class => 'textinput w-98p' ) %>
+        </div>
+        <!-- .field -->
+
+        <div class="field">
+          <%= f.label(:location, raw('Location <span class="sidenotes">(city, state, country)</span>')) %>
+          <%= f.text_field(:location, :class => 'geo-autocomplete textinput w-98p') %>
+        </div>
+        <!-- .field -->
+
+        <div class="field">
+          <label class="d-b m-b-5">Choose Editor</label>
+
+          <div class="line">
+            <div class="unit size1of2">
+              <label for="project_editor_type_basic" class="d-b m-r-20 lh-1dot5">
+                <%= image_tag(
+                  'basic_editor.png',
+                  :alt => '[Basic Editor Screenshot]'
+                ) %>
+                <br />
+                <%= f.radio_button :editor_type, :basic %> 
+                BASIC EDITOR<br/>
+                If you want to keep editing simple, choose this one.
+              </label>
+            </div>
+            <!-- .unit -->
+
+            <div class="unit size1of2">
+              <label for="project_editor_type_advanced" class="d-b m-l-20 lh-1dot5">
+                <%= image_tag(
+                  'advanced_editor.png',
+                  :alt => '[Advanced Editor Screenshot]'
+                ) %>
+                <br/>
+                <%= f.radio_button :editor_type, :advanced %> 
+                ADVANCED EDITOR<br/>
+                If you've edited clips before, choose this one.
+              </label>
+            </div>
+            <!-- .unit -->
+          </div>
+          <!-- .line -->
+        </div>
+        <!-- .field -->
+
+      </div>
+    </div>
+
+    <div class="border-b18f m-b-10"></div>
+
+    <div class="actions f-ta-r">
+      <%= f.submit 'Submit', :class => 'btn-blueg m-r-10', :style => 'width: 80px;' %>
+      <a href="javascript:$.fancybox.close();">Close</a>
+    </div>
+  <% end %>
+
+</div>
+<% content_for :script do %>
+  <%= javascript_include_tag "ui.geo_autocomplete" %>
+  <script>
+    $('#project_form')
+      .validate({
+        submitHandler: function(form) {
+          $.fancybox.showActivity();
+          form.submit();
+        }
+      });
+    $(".geo-autocomplete")
+      .geo_autocomplete({
+        maptype: "roadmap",
+        geocoder_address: true,
+        mapwidth: 80,
+        mapheight: 80
+      });
+  </script>
+<% end %>
+<% if request.xhr? %> 
+ <%= yield :script %>
+<% end %>

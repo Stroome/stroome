@@ -1,0 +1,46 @@
+<div id="group_member_results">
+  <ul class="p-0 m-0 l-ls-n">
+    <% if @group_members.size > 0 %>
+    <%   @group_members.each do |member| %>
+    <li id="group_member_user_<%= member.user.id %>" class="media">
+      <a href="<%= profile_path(member.user) %>" rel="profile" class="img m-r-10">
+        <%= image_tag(
+            member.user.picture_url,
+         ) %>
+      </a>
+      <div class="bd">
+        <div class="fs-14 f-b">
+          <%= link_to member.user.username, profile_path(member.user), :rel => "profile" %>
+        </div>
+        <p class="p-t-20">
+          <%= member.user.about_me %>
+        </p>
+      </div>
+      <% if member.group.owner? current_user %>
+      <span class="imgExt">
+        <%= link_to(
+          "x",
+          delete_group_member_path(member),
+          :class => "open-lightbox d-b wh-12 lh-1 fg-w bg-999 br-3 f-b f-ta-c",
+        ) %>
+
+      </span>
+      <% end %>
+    </li>
+    <%   end %>
+    <% else %>
+    <li class="m-h-10 p-v-10">
+     No members yet.
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="border-b18f"></div>
+  <div class="p-v-10 m-1">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals => { :results => @group_members }
+    ) %>
+  </div>
+</div>
+<%= render( :partial => "shared/bind_lightbox_to_links" ) %>

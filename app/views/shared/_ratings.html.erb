@@ -1,0 +1,24 @@
+<%= ratings_for(
+  rate_object,
+  :small => true,
+  :force_static => !(
+    current_user &&
+    rate_object.rate_by(current_user).nil?
+  )
+) %>
+<% content_for :script do %>
+<script>
+  $(".rate_link").click(function(event) {
+    // stop form from submitting normally
+    event.preventDefault();
+
+    $.post(
+      $(this).attr("href"), 
+      function(data) {
+        $(".ratings_container").html(data);
+        $(".ajaxful-rating-wrapper").fadeOut().fadeIn();
+      }
+    );
+  });
+</script>
+<% end %>

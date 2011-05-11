@@ -1,0 +1,17 @@
+<b><%= comment.user.username if comment.user %></b> (<%= time_ago_in_words(comment.created_at) %> ago)
+<p><%= comment.body %></p>
+<%
+   if comment.children.size > 0 # if there are child comments
+%>
+    <div class="comment_child">
+<%
+       comment.children.each do |child|
+%>
+            <%= render :partial => "shared/comment", :locals => { :comment => child } %>
+<%
+        end
+%>
+     </div>
+<%
+   end
+%>

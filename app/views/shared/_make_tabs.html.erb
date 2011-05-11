@@ -1,0 +1,14 @@
+<ul class="nav m-0 group-nav clearfix f-ta-c tk-pnc f-sb fs-18 f-tr-lc pos-r">
+  <%
+    tab_items = tab_items || []
+    len = tab_items.count-1
+  %>
+  <% tab_items.each_with_index do |entry, index| %>
+  <li class="<%= 'active' if index == 0 %> <%= 'last' if index == len %>">
+    <div class="bar bg-black"></div>
+    <a href="<%= entry[:url] %>">
+      <span class="p-h-6"><%= entry[:title] %></span>
+    </a>
+  </li>
+  <% end %>
+</ul>

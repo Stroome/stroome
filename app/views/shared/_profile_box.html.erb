@@ -1,0 +1,129 @@
+<%
+   # = :locals
+   # * is_profile_owner (boolean) - show 'edit' link if true.
+   # * user (User) - User object to populate the profile box.
+   # * show_about_me (boolean=true) - show about me if true, default is true.
+   # * show_stats (boolean=true) - show user stats if true, default is true.
+   # * show_interests (boolean=true) - show user's topic of interests if true, default is true.
+
+   # set default values
+   show_recent = show_recent || false
+   show_about_me = true unless local_assigns.has_key? :show_about_me
+   show_stats = true unless local_assigns.has_key? :show_stats
+   show_interests = true unless local_assigns.has_key? :show_interests
+
+%>
+<div class="widget-box pos-r m-b-20">
+
+  <div class="bar bg-black m-1"></div>
+
+  <div class="m-h-5 p-v-5">
+    <h3 class="fs-13 m-b-10 m-h-10 pos-r f-tr-cp">
+      <span class="visuallyhidden">Profile of </span>
+      <a href="<%= url_for profile_path(user) %>" class="fg-333" rel="profile">
+        <%= user.username %>
+      </a>
+
+      <% if is_profile_owner %>
+        <%= link_to 'Edit profile',
+                    edit_user_registration_path(user), 
+                    { :class => 'pos-a f-nb arrow-tail', 
+                      :style=>'right:0;top:0' } %>
+      <% elsif (user_signed_in? and user.id != current_user.id) %>
+        <div class="fl-r">
+        <% if UserFollowing.following_user? current_user, user %>
+          <%= render :partial => "follows/unfollow_user", :locals => { :following => user } %>
+        <% else %>
+          <%= render :partial => "follows/follow_user", :locals => { :following => user } %>
+        <% end %>
+        </div>
+      <% end %>
+    </h3>
+    
+    <div class="media">
+
+      <div class="img fl-l m-r-10 m-b-10">
+        <a href="<%= url_for profile_path(user) %>" rel="profile">
+          <img src="<%=user.picture_url-%>"  />
+        </a>
+      </div>
+
+      <p class="m-b-10">
+          <% if user.can_show_fullname? %>
+            <span class="visuallyhidden">Name: </span>
+            <%= user.fullname %>
+            <br />
+          <% end %>
+
+          Member since: <%= user.created_at.strftime("%m/%y") %>
+          <br />
+
+          Location: <%= user.location %>
+          <br />
+      </p>
+
+      <% if show_about_me %>
+        <p class="m-b-10"><%= user.about_me %></p>
+      <% end %>
+
+      <div style="clear: both;"></div>
+
+      <% if show_stats %>
+        <ul class="l-ls-n p-0 m-0 m-b-10">
+          <li>Total projects: <%= user.total_projects %></li>
+          <li>Total clips: <%= user.total_clips %></li>
+          <li>Total views: <%= user.total_views %></li>
+          <li>Total likes: <%= user.total_likes %></li>
+          <li># of times projects remixed: <%= user.times_projects_remixed %></li>
+        </ul>
+      <% end %>
+      <% if show_interests %>
+        <p class="m-b-10">
+          Interests: <span class="fs-10 fg-999"><%= project_topic_links user.interested_in_topics %></span>
+        </p>
+      <% end %>
+
+      <% if show_recent && (r_project = current_user.latest_project) %>
+        <% 
+          _editor_path = r_project.editor_type == 'basic' ?
+                    basic_editor_project_path(r_project) : 
+                    advanced_editor_project_path(r_project)
+        %>
+
+        <div class="border-b18f m-b-10"></div>
+
+        <div class="line">
+          <h4 class="m-b-5">Most Recent Project</h4>
+
+          <div class="unit size1of2">
+            <%= render(
+              :partial => 'shared/thumbnail',
+              :locals => {
+                :entry => r_project,
+                :width => 114,
+                :height => 66
+              }
+            ) %>
+          </div>
+          <div class="unit size1of2 pos-r" style="padding-bottom: 35px; min-height: 31px">
+            <p class="m-b-10"><%= r_project.title %></p>
+
+            <%= link_to(
+              t("resume_editor"),
+              _editor_path,
+              {class: 'open-modalbox btn-blueg w-100p pos-bl'}
+            ) %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="foot pos-a">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>
+

@@ -1,0 +1,27 @@
+<div class="widget-box pos-r border-b18f">
+
+  <% if params[:header] %>
+  <h2 class="_header p-v-5 p-h-10 fs-24 fg-333 f-tr-lc">
+    Comments
+  </h2>
+  <% end %>
+
+  <div id="comment_list_container" class="m-h-10 p-v-10"></div>
+
+  <%= render :partial => "form", :locals => { :form_post_url => @post_comment_path } %>
+</div>
+
+<% content_for :script do %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.get("<%= @comments_path %>", function(result) {
+        $("#comment_list_container").html( result );
+    });
+
+  });
+</script>
+<% end %>
+
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

@@ -1,0 +1,21 @@
+/*
+ *
+ *
+ *  Grids
+ **********************************/
+/* Might not work very well though, but at least it's usable */
+.size1of6{width: 16.66667%;}
+.size3of10{width: 30%;}
+.size5of11{width: 45.454545%;}
+.size4of14{width: 28.571428%;}
+.size1of17{width: 5.8823529%;}
+.size5of17{width: 29.411764%;}
+.size6of17{width: 35.294117%;}
+.size6dot5of17{width: 38.235293%;}
+.size7of17{width: 41.176470%;}
+.size9of17{width: 52.941176%;}
+.size10of17{width: 58.823529%;}
+.size11of17{width: 64.705881%;}
+.push1of11{margin-right: 9.090909%;}
+.push1of14{margin-right: 7.142571%;}
+.push1of17{margin-right: 5.8823529%;}

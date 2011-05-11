@@ -1,0 +1,41 @@
+# see http://documentcloud.github.com/jammit/
+#
+# To generate static files in server,
+# (required gems: yui-compressor, jammit)
+#
+# cd stroome       # rails app root
+# jammit --force   # jammit --help for more
+#
+package_assets: on #always #use 'always' to enable jammit in development env
+embed_assets: on
+compress_assets: on
+
+javascripts:
+  main:
+    - public/javascripts/jquery.js
+    - public/javascripts/rails.js
+    - public/javascripts/plugins.js
+    - public/javascripts/script.js
+    - public/javascripts/swfobject/swfobject.js
+    - public/javascripts/fancybox/jquery.fancybox-1.3.4.js
+    - public/javascripts/jquery-ui-1.8.11.custom.min.js
+    - public/javascripts/jquery.metadata.js
+    - public/javascripts/jquery.validate.js
+    - public/javascripts/jquery.jcarousel.js
+
+stylesheets:
+  main:
+    - public/stylesheets/oocss/grid.css
+    - public/stylesheets/oocss/mod.css
+    - public/stylesheets/oocss/media.css
+    - public/stylesheets/h5bp.css
+    - public/stylesheets/themes/light.css
+    - public/stylesheets/helpers/layout.css
+    - public/stylesheets/helpers/type.css
+    - public/stylesheets/helpers/grid.css
+    - public/stylesheets/helpers/color.css
+    - public/stylesheets/helpers/border.css
+    - public/stylesheets/fancybox/jquery.fancybox-1.3.4.css
+    - public/stylesheets/skins/stroome/skin.css
+    - public/stylesheets/editor.css
+    - public/stylesheets/ajaxful_rating.css

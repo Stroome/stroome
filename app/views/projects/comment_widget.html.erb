@@ -1,0 +1,10 @@
+<div id="comments">
+  <%= render(
+    :partial => "shared/comments",
+    :locals => {
+      :model => @project,
+      :form_post_url => project_comments_path(@project),
+      :param_string => "project_id=#{@project.id}"
+    }
+  ) %>
+</div>

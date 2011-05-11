@@ -1,0 +1,22 @@
+<div class="m-b-10">
+  <%= image_tag(
+          user.picture_url,
+          :width => 60,
+          :height => 60
+      ) %>
+
+  <strong><%= link_to user.username, profile_path(user) %></strong>
+
+  <% if is_owner %>
+    <span>owner</span>
+  <% end %>
+
+  <% if local_assigns.has_key? :delete_path and not delete_path.nil? %>
+    <%= link_to(
+      "x",
+      delete_path,
+      :title => "Remove this member",
+      :class => "open-lightbox"
+    ) %>
+  <% end %>
+</div>

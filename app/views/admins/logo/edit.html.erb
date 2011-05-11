@@ -1,0 +1,30 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title">Stroome Logo</h2>
+    <div class="inner">
+      <img src="<%= @logo_path %>" />
+      <br/>
+      <br/>
+      <%= form_tag(admins_logo_path, :method => :put, :multipart => true, :class => :form) do %>
+        <div class="group">
+          <%= file_field_tag :logo, :accept => 'image/png' %><br/>
+          <span class="description">Note: <strong>PNG</strong> file only.
+            Please resize <strong>logo height</strong> to approximately <strong>82 pixels</strong>
+            to fit well into current site layout.</span>
+        </div>
+        <div class="group navform wat-cf">
+          <button class="button" type="submit">
+            <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Upload Stroome Logo")}") %>
+            <%= t("web-app-theme.save", :default => "Upload Stroome Logo") %>
+          </button>
+        </div>
+        
+      <% end %>
+    </div>
+
+  </div>
+</div>

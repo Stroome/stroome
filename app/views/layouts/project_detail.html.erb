@@ -1,0 +1,248 @@
+<%= content_for :content do %>
+
+<div id="main" role="main" class="m-h-15 p-t-5 p-b-10">
+
+  <h2 class="_header fs-29 m-b-20 f-tr-cp">
+    <%= yield :header %>
+  </h2>
+
+  <div class="line">
+
+    <div class="unit size2of3">
+      <div class="widget-box pos-r bg-f0f0f0 m-b-20">
+
+        <div class="m-10">
+
+          <%= render(
+                :partial => 'shared/video_player',
+                :locals => {
+                  :video_id => @project.video_id,
+                  :width => 633,
+                  :height => 369#423
+                }
+          ) %>
+
+          <div class="widget-box pos-r bg-white p-t-10">
+            <h4 class="fs-12 f-nb f-tr-uc bg-999 fg-w p-1 m-b-5">
+              Clips used in this video
+            </h4>
+
+            <div class="m-h-5" style="height: 110px;">
+              <ul id="clips-used-in-video" 
+                  class="static-carousel jcarousel-skin-stroome media visuallyhidden">
+                <%= render(
+                  :partial => 'shared/clip_used_in_video',
+                  :collection => @project.clips,
+                  :as => :clip
+                ) %>
+              </ul>
+            </div>
+
+            <div class="foot pos-a">
+              <div class="left-foot fl-l"></div>
+              <div class="right-foot fl-r"></div>
+              <div class="center-foot"></div>
+            </div>
+          </div>
+          <!-- .widget-box -->
+
+          <div class="line l-ls-n p-t-15">
+            <div class="unit size2of3 p-t-5">
+              <div class="social-buttons span-15 last">
+                <ul class="hlist">
+
+                  <% if @project.is_public? %>
+                  <% 'When public then only show FB LIKE' %>
+                  <li>
+                    <%= render(
+                          :partial => 'shared/like_entry_button', 
+                          :locals => { 
+                            :url => project_url,
+                            :width => 150,
+                            :height => 25
+                          }
+                    ) %>
+                  </li>
+                  <% end %>
+                  <li class="m-r-20">
+                    <%= render(
+                      :partial => 'shared/rate_it',
+                      :locals => { :rate_object => @project }
+                    ) %>
+                  </li>
+                  <li class="f-b">
+                    Views: <%= @project.total_views %>
+                  </li>
+                </ul>
+                <br/>
+              </div>
+              <div class="description span-6">
+                <h3>Description</h3>
+                <p><%= @project.description %></p>
+              </div>
+            </div>
+            <!-- .unit -->
+
+            <div class="unit size1of3">
+              <% if @project.is_public? %>
+                <div class="p-5 bg-white border-1-dedede m-b-10">
+                <%= render(
+                  :partial => 'shared/share_buttons',
+                  :locals  => {
+                    :url => project_url,
+                    :title => @project.title,
+                    :description => @project.description
+                  }
+                ) %>
+              </div>
+              <% end %>
+              <div class="actions span-5 last">
+                <%= yield :actions %>
+              </div>
+            </div>
+            <!-- .unit -->
+
+          </div>
+          <!-- .line -->
+
+          <div class="line l-ls-n p-b-15">
+            <div class="unit size2of3">
+              <ul class="m-0 fs-10 fg-999 lh-1dot5">
+                <li>
+                  <span class="f-tr-uc">File Under: </span>
+                  <%= project_topic_links @project.topics %>
+                </li>
+                <li>
+                  <span class="f-tr-uc">Tags: </span>
+                  <%= project_tag_links @project.tags %>
+                </li>
+                <%= yield :more_label_list %>
+              </ul>
+              <div class="m-t-10">
+                <a rel="license" target="_blank"
+                   title="This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."
+                   href="http://creativecommons.org/licenses/by-sa/3.0/">
+                <%= image_tag "ccbysa.png",
+                      :alt => "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.",
+                      :width => "90px" %>
+                </a>
+              </div>
+            </div>
+            <!-- .unit -->
+
+
+            <div class="unit size1of3 fs-10 fg-999">
+              <ul class="m-0 lh-1dot5">
+                <li>Members: <%= @project.total_members %></li>
+                <li>Remixed by: <%= @project.total_remixed %></li>
+                <li>Shared by: <%= @project.total_shared %></li>
+                <li>Liked by: <%= @project.total_likes %></li>
+              </ul>
+            </div>
+            <!-- .unit -->
+          </div>
+        </div>
+        
+        <div class="foot pos-a bg-f0f0f0">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+      </div>
+      <!-- .widget-box -->
+<% if FBT.enable_project_invite_user %>
+        
+      <div id="bottom-tabs" class="m-t-10">
+      <%= render(
+          :partial => 'shared/make_tabs',
+          :locals => {
+            :tab_items => [
+              {
+                  :title => 'Comments',
+                  :url => project_comments_path(@project)
+              },
+              {
+                  :title => "Members (#{ @project.total_members })",
+                  :url => project_members_path(
+                              @project,
+                              :can_manage => (params[:action] == "manage" ? true : false )
+                  )
+              },
+              {
+                  :title => "Groups (#{ @project.total_groups })",
+                  :url => project_groups_path(
+                              @project,
+                              :can_manage => (params[:action] == "manage" ? true : false )
+                  )
+              }
+            ]
+          }
+        ) %>
+      </div>
+      <%= render(
+        :partial => 'shared/bind_tabs',
+        :locals => {
+          :tabs_container_selector => "#bottom-tabs"
+        }
+      ) %>
+
+<% else %>
+      <div id="comment_widget"></div>
+<% end %>
+
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3">
+      <div class="m-l-25">
+
+        <%= render(
+              :partial => 'shared/profile_box',
+              :locals => {
+                :is_profile_owner=> (user_signed_in? and @project.user.id == current_user.id),
+                :user => @project.user
+              }
+        ) %>
+
+        <div class="related">
+          <%= yield :related_tabs %>
+        </div>
+      </div>
+    </div>
+    <!-- .unit -->
+
+  </div>
+  <!-- .line -->
+
+</div>
+<!-- #main -->
+<% end %>
+
+<% content_for :script do %>
+<script>
+(function(){
+  var carousel = $('.static-carousel');
+
+  carousel.jcarousel({
+    buttonNextHTML: '<span class="next">older</span>',
+    buttonPrevHTML: '<span class="prev">newer</span>'
+  });
+
+  setTimeout(function loopsiloop(){
+    if (!carousel.is('.jcarousel-list'))
+      setTimeout(loopsiloop, 10);
+    else
+      carousel.removeClass('visuallyhidden');
+  }, 10);
+})();
+
+$(document).ready(function () {
+  $("#comment_widget").load('<%= project_comments_path(@project, :header => "yes") %>');
+});
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>
+
+<%= render :file => 'layouts/application' %>

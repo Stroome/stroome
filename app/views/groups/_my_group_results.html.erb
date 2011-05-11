@@ -1,0 +1,75 @@
+<ul class="p-0 m-0 l-ls-n border-b18f">
+<%
+  len = @search.results.count 
+  running = 0
+%>
+<% @search.each_hit_with_result do |hit, group| %>
+  <% running += 1 %>
+  <li id="group_<%= group.id %>" class="line media p-v-10 m-h-0 p-h-20 <%= running == len ? 'last' : 'border-b18f'-%> ">
+
+    <div class="m-b-20 m-r-20 unit size1of5">
+      <a href="<%= group_path(group) %>">
+        <%= image_tag(
+              group.picture_url,
+              :class =>"m-center d-b"
+        ) %>
+      </a>
+      <%" render(
+            :partial => 'shared/thumbnail',
+            :locals => {
+              :entry => project,
+              :width => 337,
+              :height => 191
+            }
+      ) " %>
+    </div>
+
+    <div class="group-summary unit size2of5  m-r-15">
+
+      <h3 class="fs-14 f-b m-b-5 f-tr-cp">
+        <%= link_to group.title, group %>
+      </h3>
+
+
+      <p><%= group.description %></p>
+      <p class="fs-10 fg-999 m-b-20">
+        <span class="f-tr-uc fs-11">Interests: </span>
+        <%= group_topic_links group.topics %>
+      </p>
+
+      <% unless group.owner? current_user %>
+      <p>
+        <%= link_to(
+              'unjoin group',
+              unjoin_group_path(group),
+              :method => :post,
+              :remote => true,
+              :class => 'btn-blueg'
+        ) %>
+      </p>
+      <% end %>
+
+    </div>
+    <!-- group summary -->
+
+    <div class="unit size1of4 lh-1dot25">
+      <ul class="l-ls-n m-0">
+        <li>Membership: <%= group.membership.titlecase %></li>
+        <li>Total Members: <%= group.total_members %></li>
+        <li>Total Projects: <%= group.total_projects %></li>
+        <li>Total Views: <%= group.total_views %></li>
+        <li>Total Likes: <%= group.total_likes %></li>
+        <li>Created: <%= date group.created_at %></li>
+        <li>Created By: <%= link_to group.owner.username, profile_path(group.owner) %></li>
+      </ul>
+    </div>
+    <!-- .unit -->
+  </li>
+<% end %>
+</ul>
+<div style="min-height: 25px;">
+  <%= render(
+    :partial => 'shared/will_paginate_with_remote_links',
+    :locals  => { :results => @search.results }
+  ) %>
+</div>

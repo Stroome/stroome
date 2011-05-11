@@ -1,0 +1,157 @@
+<div id="group_projects_results"
+     class="widget-box pos-r border-b18f">
+
+  <% if @can_manage %>
+  <%= form_tag group_projects_path,
+               :id => 'group_projects_search_form',
+               :method => :get,
+               :remote => true do %>
+  <div>
+    <ul class="nav m-0 p-v-15 m-h-15 fg-shinyblue">
+      <li class="first p-h-15">
+        <%= radio_button_tag(
+            'filter',
+            'all',
+            params[:filter] == 'all',
+            :class => 'checked-label-highlight visuallyhidden'
+        ) %>
+        <%= label_tag "filter_all", "ALL" %>
+      </li>
+      <li class="p-h-15">
+        <%= radio_button_tag(
+            'filter',
+            'new',
+            params[:filter] == 'new',
+            :class => 'checked-label-highlight visuallyhidden'
+        ) %>
+        <%= label_tag "filter_new", "NEW PROJECTS" %>
+      </li>
+      <li class="last p-h-15">
+        <%= radio_button_tag(
+            'filter',
+            'existing',
+            params[:filter] == 'existing',
+            :class => 'checked-label-highlight visuallyhidden'
+        ) %>
+        <%= label_tag "filter_existing", "EXISTING PROJECTS" %>
+      </li>
+    </ul>
+  </div>
+  <% end #endform %>
+  <% end #endif %>
+
+  <ul class="p-10 m-0 l-ls-n">
+    <% if @results.size > 0 %>
+    <%   @results.each do |item| %>
+    <%     project = case item
+             when ProjectGroup then item.project
+             when JoinRequest  then item.joinable
+           end
+    %>
+    <li id="project_<%= project.id %>">
+
+      <div class="media m-0">
+
+        <div class="p-b-20 m-r-20 fl-l">
+          <%= render(
+                :partial => 'shared/thumbnail',
+                :locals => {
+                  :entry => project,
+                  :width => 337,
+                  :height => 191
+                }
+          ) %>
+        </div>
+
+        <% 'Following by video details' %>
+        <h3>
+          <%= link_to(
+                project.title,
+                project_path_by_current_user(project, current_user),
+                { :class => 'fg-333 fs-14' }
+          )-%>
+        </h3>
+        <div class="fs-10 fg-999 m-b-15">
+          <div class="duration d-ib">
+            <%= to_mins project.duration %>
+          </div>
+          <div class="rating m-l-10 d-ib">
+            <%= render :partial => 'shared/ratings_static',
+                       :locals => { :rate_object => project } %>
+          </div>
+        </div>
+
+        <p class="m-b-10"><%= project.description %></p>
+        <p class="m-b-10 fs-10 fg-999">
+          <span class="f-tr-uc">Filed Under</span>:
+          <%= project_topic_links project.topics %>
+        </p>
+
+        <% if @can_manage %>
+        <p>
+          <% if item.instance_of?(JoinRequest) %>
+            <%= form_tag reply_group_projects_path,
+                         :method => :post,
+                         :remote => true do %>
+
+            <button type="submit" name="reply" value="yes" class="btn-blueg">
+              Accept Project
+            </button>
+            <button type="submit" name="reply" value="no" class="btn-blueg">
+              Deny Project
+            </button>
+
+            <input type="hidden" name="join_request" value="<%= item.id %>"/>
+            <input type="hidden" name="page" value="<%= params[:page] %>"/>
+
+            <% end #endform %>
+          <% else %>
+
+            <%= link_to "Remove Project",
+                        group_project_path(item),
+                        :method => :delete,
+                        :remote => true,
+                        :confirm => 'Are you sure?',
+                        :class => "btn-blueg"
+            %>
+
+          <% end #endif %>
+        </p>
+        <% end #endif %>
+
+      </div>
+
+
+    </li>
+    <%   end #endeach %>
+    <% else %>
+    <li class="m-h-10 p-v-10">
+     No project yet.
+    </li>
+    <% end #endif %>
+  </ul>
+
+  <div class="border-b18f"></div>
+  <div class="p-v-10 m-1">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals => { :results => @results }
+    ) %>
+  </div>
+
+  <div class="foot pos-a bg-f0f0f0">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>
+<%= render( :partial => "shared/bind_lightbox_to_links" ) %>
+<script>
+$(document).ready(function () {
+  var $form = $('#group_projects_search_form');
+
+  $form.find(":radio").bind("change", function() {
+    $form.submit();
+  })
+});
+</script>

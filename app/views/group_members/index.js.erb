@@ -1,0 +1,5 @@
+$("#group_members_results").replaceWith(
+  '<%= escape_javascript(
+    render(:file => "/group_members/index.html.erb")
+  ) %>'
+);

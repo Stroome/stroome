@@ -1,0 +1,34 @@
+<div id="invite-others-by-search">
+<%= form_tag invite_others_by_search_path, :remote => true do %>
+  Enter name, email or keyword: <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+  <ul>
+  <% @search.each_hit_with_result do |hit, user| %>
+    <li>
+      <%= image_tag user.picture_url %>
+      <%= link_to user.username, profile_path(user) %>
+      <span><%= user.about_me %></span>
+
+    <% if @project.can_invite_user? user %>
+      <div id="invite-user-form-<%= user.id %>">
+      <%= form_tag project_invitations_path, :method => :post, :remote => true do %>
+        <%= hidden_field_tag :receiver_id, user.id %>
+        <%= hidden_field_tag :project_id, @project.id %>
+        
+        <%= submit_tag "Invite" %>
+      <% end %>
+      </div>
+    <% elsif @project.already_invited? user %>
+      <span>(Invited)</span>
+    <% elsif @project.project_owner? user %>
+      <span>(Owner)</span>
+    <% elsif @project.project_member? user %>
+      <span>(Member)</span>
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+<%= render :partial => 'shared/will_paginate_with_remote_links',
+           :locals => { :results => @search.results } %>
+</div>

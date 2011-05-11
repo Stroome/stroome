@@ -1,0 +1,16 @@
+<% content_for :script do %>
+<script>
+(function(tabs){
+  var lis = tabs.find('.group-nav').find('li');
+
+  tabs.tabs();
+  tabs.bind('tabsselect', function(event, ui) {
+    lis.removeClass('active');
+    $(ui.tab).parent().addClass('active');
+  });
+})($('<%= tabs_container_selector %>'));
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

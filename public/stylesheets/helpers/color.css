@@ -1,0 +1,27 @@
+/*
+ *  Colors
+ ********************************************/
+.fg-w, a.fg-w:visited { color: #fff; }
+.fg-333,
+.fg-333 a,
+.fg-333 a:active,
+.fg-333 a:visited { color: #333; }
+.fg-999,
+.fg-999 a,
+.fg-999 a:active,
+.fg-999 a:visited,
+a.fg-999:visited { color: #999; }
+.fg-696969, 
+.fg-696969 a,
+.fg-696969 a:visited { color: #696969; }
+.fg-00a8e0 { color: #00A8E0; }
+.fg-red, label .required, form .error { color: #f00; }
+.fg-shinyblue { color: #1DB0E1; }
+.bg-shinyblue { background-color: #1DB0E1; }
+.bg-lblue { background-color: #E1F5FB; background-color: rgba(217, 242, 250, .8); }
+.bg-f0f0f0 { background-color: #F0F0F0; }
+.bg-w, .bg-white { background-color: #fff; }
+.bg-999 { background-color: #999; }
+.bg-black { background-color: #000; }
+.bg-red { background-color: #f00; }
+.bg-yellow { background-color: yellow; }

@@ -1,0 +1,53 @@
+<% content_for :title, @project.title %>
+<% content_for :header, @project.title %>
+<%= render :partial => "shared/open_graph_meta_tags",
+           :locals => {
+               :title => @project.title,
+               :url => project_url(@project),
+               :image_url => @project.thumbnail_url,
+               :description => @project.description
+           } %>
+
+<% content_for :actions do %>
+  <% if !user_signed_in? %>
+    <%= link_to(
+      t("promote_sign_up_with_remix"),
+      new_user_registration_path, 
+      { :class => 'btn-blueg m-b-10 w-100p' } 
+
+    ) %>
+  <% else %>
+    <%= link_to(
+      t("remix_project"),
+      new_project_path(:remix => @project.id), 
+      { :class => 'open-lightbox btn-blueg m-b-10 w-100p' } 
+    ) %>
+  
+    <% if @project.user_id == current_user.id %>
+      <%= link_to(
+        t("manage_project"),
+        manage_project_path,
+        { :class => 'btn-blueg m-b-10 w-100p' }
+      ) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% content_for :related_tabs do %>
+<div id="related-tabs">
+  <%= render(
+    :partial => 'shared/make_tabs',
+    :locals => {
+      :tab_items => [
+        {:title => 'More From This User', :url => more_from_owner_project_path(@project)},
+        {:title => 'Related Projects', :url => more_like_this_project_path(@project)}
+      ]
+    }
+  ) %>
+</div>
+<% end %>
+<%= render( :partial => 'shared/bind_tabs',
+      :locals => {
+        :tabs_container_selector => "#related-tabs"
+      }
+    ) %>

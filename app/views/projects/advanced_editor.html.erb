@@ -1,0 +1,28 @@
+<div style="height:678px;width:853px;text-align:center">
+<div id="kse"></div>
+</div>
+<% content_for :script do %>
+<script>
+  var flashVars = <%= raw @flash_vars.to_json %>;
+  flashVars.jsDelegate = 'callbacks';
+
+  var callbacks = {
+      closeHandler: function (obj) {
+          $.fancybox.showActivity();
+          window.location = "<%= video_saved_project_path(@project) %>";
+      }
+  };
+  var params = {
+      allowScriptAccess: "always",
+      allowNetworking: "all",
+      wmode: "opaque"
+  };
+  swfobject.embedSWF("http://www.kaltura.com/kse/ui_conf_id/3457352", //<%= @project.uiconf_kae_id %>",
+      "kse", "847", "672", "9.0.0", false,
+      flashVars,
+      params);
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

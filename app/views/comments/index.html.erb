@@ -1,0 +1,25 @@
+<div id="comments_coll">
+<%= render(
+  :partial => 'shared/comments_set',
+  :locals => {
+    :comments => @comments,
+    :level => 0
+  }
+) %>
+<%= will_paginate @comments, :renderer => PaginationListLinkRenderer %>
+<%'= page_entries_info @comments '%>
+</div>
+
+<% content_for :script do %>
+<script>
+  $('#comments_coll .pagination a').click(function(e) {
+      e.preventDefault();
+      $.get($(this).attr("href"), function(result){
+          $("#comments_coll_wrapper").html(result);
+       });
+  });
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

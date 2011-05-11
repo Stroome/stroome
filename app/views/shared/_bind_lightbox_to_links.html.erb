@@ -1,0 +1,28 @@
+<% content_for :script do %>
+<script>
+$(document).ready(function() {
+  var config = {
+      padding: 0,
+      margin: 0,
+      modal: false,
+      titleShow: false,
+      overlayColor: '#fff',
+      overlayOpacity: 0.5,
+      centerOnScroll: true,
+      showCloseButton: false,
+      enableEscapeButton: true};
+
+  $('a.open-lightbox').fancybox(config);
+
+
+  var modal_box = $.extend({}, config);
+  modal_box.modal = true;
+  $('a.open-modalbox').fancybox(modal_box);
+
+});
+
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

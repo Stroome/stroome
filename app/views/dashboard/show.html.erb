@@ -1,0 +1,93 @@
+<% content_for :title, "My Dashboard" %>
+<div id="main" role="main">
+  <h2 class="_header fs-29 f-tr-lc m-h-15 p-t-10 m-b-20">
+    My Dashboard
+  </h2>
+
+  <div class="line m-h-15 p-b-10">
+
+    <div class="unit size2of3">
+
+      <% 'Loading latest project of user and list of projects by user' %>
+      <%= render(
+          :partial => 'shared/latest_projects_box',
+          :locals => {
+            :show_manage_link => false,
+            :all_projects_same_owner => false,
+            # TODO latest projects list ajax
+            :projects => @projects,
+            :show_player => true
+          }
+      ) %>
+
+      <div class="widget-box pos-r m-b-20">
+
+        <div class="bar bg-red m-1"></div>
+
+        <h3 class="_header fg-333 fs-20 p-v-5 f-tr-lc p-h-15">
+          my follow feed
+        </h3>
+
+        <% if FBT.enable_activity_stream %>
+
+        <div id="my_follow_stream_container"></div>
+
+        <% else %>
+        <div>
+          <div class="m-10">
+            <p class="m-b-15">
+              The Follow Feed lets you stay on top of everything your friends are doing on Stroome.
+              Keep track of all the new groups, clips and projects the community is creating,
+              not to mention all the new members who are joining.
+            </p>
+
+            <p class="fs-16">coming soon</p>
+
+          </div>
+
+          <div class="border-b18f"></div>
+          <div style="height: 20px;"></div>
+        </div>
+
+        <div class="foot pos-a">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+        <% end %>
+      </div>
+      <!-- widget -->
+
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3 lastUnit">
+      <div class="m-l-25">
+        <%= render(
+          :partial => 'shared/profile_box',
+          :locals => {is_profile_owner: true,
+            show_about_me: false,
+            show_stats: false,
+            show_interest: false,
+            show_recent: true,
+            user: current_user}
+        ) %>
+
+        <div id="notifications_container"></div>
+
+      </div>
+    </div>
+    <!-- .unit -->
+
+  </div>
+  <!-- .line -->
+
+</div>
+<!-- #main -->
+
+<% content_for :script do %>
+<script>
+  $('#notifications_container').load('<%= user_notifications_path %>');
+  $('#my_follow_stream_container').load('<%= my_follow_stream_path(:noborder => true) %>');
+</script>
+<% end %>

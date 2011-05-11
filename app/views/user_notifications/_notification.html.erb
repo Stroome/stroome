@@ -1,0 +1,34 @@
+<div class="lh-1dot25 bg-f0f0f0 p-10 m-b-10">
+  <h4 class="fg-shinyblue fs-13">
+    <%= notification.title %>
+  </h4>
+
+  <p class="fs-11 fg-999">
+    <%= time_ago_in_words( notification.created_at ) %> ago
+  </p>
+
+  <p><%= raw notification.render_description(self) %></p>
+
+  <% if notification.actionable? %>
+
+    <%= form_tag user_notification_path(notification),
+                 :method => :post,
+                 :remote => true do %>
+
+      <button type="submit" name="reply" value="yes" class="btn-blueg">
+        ACCEPT
+      </button>
+      <button type="submit" name="reply" value="no" class="btn-blueg">
+        REJECT
+      </button>
+
+    <% end %>
+
+  <% elsif notification.readonly? %>
+
+    <p class="hidden">
+      Status: <%= notification.status %>
+    </p>
+
+  <% end %>
+</div>

@@ -1,0 +1,12 @@
+<%= link_to "close", "javascript:$.fancybox.close();" %>
+<div id="invite-others-tab" style="width:400px">
+  <ul>
+    <li><a href="<%= invite_others_by_search_path(@project) %>"><span>Search</span></a></li>
+  </ul>
+
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#invite-others-tab").tabs();
+});
+</script>

@@ -1,0 +1,133 @@
+<%
+   # = :locals
+   # * show_manage_link (boolean=false) - show 'manage' link if true.
+   # * all_projects_same_owner (boolean=false) - append username to label 'More Projects' if true.
+   # * projects (Project array=[]) - ordered list of projects to show.
+
+   # set default values
+   show_manage_link = false unless local_assigns.has_key? :show_manage_link
+   all_projects_same_owner = false unless local_assigns.has_key? :all_projects_same_owner
+   projects = [] unless local_assigns.has_key? :projects
+   show_player = show_player || false
+%>
+
+<% unless projects.empty? %>
+  <% project = projects[0] %>
+  <div class="widget-box pos-r bg-f0f0f0 m-b-20">
+
+    <div class="m-h-10 p-v-10">
+      <h3 class="header fs-20">
+        Latest Projects
+      </h3>
+
+      <div id="projectContainer" class="of-h">
+        <%= render(
+          :partial => "shared/latest_project",
+          :locals => {
+            :project => project,
+            :show_manage_link => show_manage_link,
+            :show_player => show_player
+          }
+        ) %>
+      </div>
+
+      <div class="widget-box pos-r bg-white">
+        
+        <h4 class="fs-12 f-nb f-tr-uc bg-999 fg-w p-3 m-b-5">
+          More Projects
+          <%= "by #{project.user.username}" if all_projects_same_owner  %>
+        </h4>
+
+        <div class="m-h-5" style="height: 110px;">
+          <ul class="endless-carousel jcarousel-skin-stroome media visuallyhidden">
+
+            <% projects.each do |p| %>
+              <li class="<%= 'selected ' if p.id == project.id %> img">
+                <%= render(
+                  :partial => 'shared/thumbnail',
+                  :locals => {
+                    :entry => p, :no_add => true,
+                    :width => 151, :height => 86,
+                    :options => [{:title => 'data-summary', :content => summary_project_path(p, :show_manage_link => show_manage_link) }]
+                  }
+                ) %>
+              </li>
+            <% end %>
+
+          </ul>
+
+          <div class="foot pos-a">
+            <div class="left-foot fl-l"></div>
+            <div class="right-foot fl-r"></div>
+            <div class="center-foot"></div>
+          </div>
+        </div>
+
+      </div>
+      <!-- .widget-box -->
+
+    </div>
+
+    <div class="foot pos-a bg-f0f0f0">
+      <div class="left-foot fl-l"></div>
+      <div class="right-foot fl-r"></div>
+      <div class="center-foot"></div>
+    </div>
+  </div>
+  <!-- .widget-box -->
+<% else %>
+  <div class="widget-box pos-r bg-f0f0f0 m-b-20">
+
+    <div class="m-h-10 p-v-10">
+      <h3 class="header fs-20">
+        No project yet..
+      </h3>
+    </div>
+
+    <div class="foot pos-a bg-f0f0f0">
+      <div class="left-foot fl-l"></div>
+      <div class="right-foot fl-r"></div>
+      <div class="center-foot"></div>
+    </div>
+  </div>
+  <!-- .widget-box -->
+<% end %>
+
+<% content_for :script do %>
+<script>
+(function(){
+  // when used in Profile Page => can scroll all projects of the User (endless)
+  // when used in Dashboard Page => can scroll max 20 latest projects.
+  var carousel = $('.endless-carousel')
+
+  carousel.jcarousel({
+    buttonNextHTML: '<span class="next">older</span>',
+    buttonPrevHTML: '<span class="prev">newer</span>'
+  });
+  carousel.find('a').bind("click", function (ev) {
+    ev.preventDefault();
+    $.get(
+      $(this).attr("data-summary"), 
+      function(data) {
+        var container = $("#projectContainer");
+
+        container.css({opacity:1})
+          .animate({opacity:0}, 'fast', function() {
+            container.html(data).animate({opacity:1}, 'fast');
+          });
+
+      });
+  });
+
+  setTimeout(function loopsiloop(){
+    if (!carousel.is('.jcarousel-list'))
+      setTimeout(loopsiloop, 10);
+    else
+      carousel.removeClass('visuallyhidden');
+  }, 10);
+})();
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

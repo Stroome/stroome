@@ -1,0 +1,14 @@
+.bundle
+db/*.sqlite3
+db/*.tgz
+log/
+tmp/
+.idea/*
+*.lock
+*.swp
+.gitpusshuten/log/*.log
+public/uploads/
+solr/data
+
+*_backup
+create_existing_users.rb

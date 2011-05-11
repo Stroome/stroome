@@ -1,0 +1,63 @@
+### 0. The Policy
+
+This privacy policy describes Stroome's current policies and practices with regard to personal data collected by Stroome through its website Stroome.com. This privacy policy is independent from Stroome's offline personal data collection practices. The term "personal data" refers to personally identifiable information about you, such as your name, birth date, e-mail address or mailing address, and any other information that is identified with you personally.
+
+### 1. Notification of Changes to This Policy
+
+Stroome is initially being released as an Alpha version, and is continually improving and adding new functionality and features to its websites and improving and adding to our existing products, services, and programs. Because of these ongoing changes, changes in the law, and the changing nature of technology, Stroome's data practices or privacy policy will change from time to time. If and when our data practices or privacy policy change, Stroome will post the changes on the homepage of our website, by email or in this policy to notify you of the changes. We encourage you to check this page frequently. This policy was last updated on November 23, 2008.
+
+### 2. Personal Data Collected Through Stroome.com
+
+Other than cookies, as described below, the only personal data Stroome currently collects through its websites is the information you voluntarily give us when you use our sites.
+
+For example, you may use this site to contact Stroome with questions and comments. When you fill out a form on our websites, you may provide your name and other contact information, including your occupation, your e-mail address, your personal website, and your mailing address or other personal information. If you do not wish to fill out all of the information on the form you are not required to do so. When you submit information to us through Stroome, you will receive a confirmation e-mail if you enter a valid e-mail address. When you use our websites to search for information, you are not providing us with any personal information. We offer the search features as a service to you. Stroome does not collect or retain any identifying information about you when you use the search features.
+
+### 3. Use of Personal Data Collected Through Stroome.com
+
+Stroome uses the personal data information you provide to answer your question or resolve your problem. Stroome also uses this information to help us improve the content and functionality of our websites, to better understand our customers and markets, and to improve our products and services. Stroome and our affiliates may use this information to contact you in the future to tell you about products or services we believe will be of interest to you. If we do so, each communication we send you will contain instructions permitting you to "unsubscribe' from receiving future communications; provided that Stroome reserves the right to send you notices about your account even if you opt out of all voluntary email notifications.
+
+Similarly, we may provide "subscription" e-mail services, either directly or through affiliates, which enable you to receive current news and updates about Stroome. For all such services, we will provide an opportunity to "unsubscribe" from, or cancel, the subscription. Please see the Terms and Conditions page, for more information about our use of the communications we receive through the Stroome website.
+
+Access and control over most personal information on Stroome is readily available through the profile editing tools. Stroome users may modify or delete any of their profile information at any time by logging into their account and information will be updated promptly. Individuals who wish to deactivate their Stroome account may do so by sending an e-mail to [admin@stroome.com](mailto:admin@stroome.com). Removed data information may persist in backup copies for a reasonable period of time but will not be generally available to members of Stroome. You further understand and acknowledge that, even after removal, copies of user content may remain viewable in cached and archived pages or if other users have stored your user Content.
+Anonymous Data Collected Through Stroome.com.
+
+### 4. Anonymous Data Collected Through Stroome.com
+
+In addition to the information you provide when you use our websites, Stroome uses technology to collect anonymous information about the use of our websites. For example, we use technology to track how many visitors access our websites, the date and time of their visit, the length of their stay, and which pages they view. We also use technology to determine which web browsers our visitors use and the address from which they accessed our sites (for example, if they connected to a Stroome website by clicking on one of our banner ads).
+
+This technology does not identify you personally. It simply enables us to compile statistics about our visitors and their use of our sites. Stroome and our affiliates use this anonymous data and share it with third parties to improve the content and functionality of our websites, to better understand our customers and markets, and to improve our products and services.
+Cookies.
+
+### 5. Cookies
+
+A cookie is a small piece of information that is sent to your browser and stored on your computer's hard drive. Cookies do not damage your computer and they cannot be used to discover the identity of a user. You can set your browser to notify you when you receive a cookie. This enables you to decide if you want to accept it or not and whether you are required to accept the cookie to view certain content. Stroome may use cookies to "persist" a user session that is, to maintain connection with a user as he or she moves through an application or series of web pages. The purpose of cookies in this context is to remember user inputs. For example, a "shopping cart" application records purchases up until the user reaches checkout. Personalization features also use cookies to identify groups of users and deliver appropriate content and services.
+
+### 6. Disclosure of Your Personal Data.
+
+Stroome may share some or all of the personal data collected through this website with our affiliates, who use this data in accordance with this Privacy Policy. Both Stroome and our affiliates may share personal data collected through its websites with third-party vendors or contractors who act for or on behalf of Stroome or our affiliates (for example, companies that provide support services to us, including data processing services, or that help us market our products and services). These companies may need information about you in order to perform their functions. These companies are not authorized to use the information we share with them for any other purpose. In addition, there may be some other, limited circumstances in which Stroome or our affiliates may share or transfer the personal data in our databases, for example, to comply with a legal requirement, for the administration of justice, to protect your vital interests, to protect our interests or property, to prevent fraud or other illegal activity perpetrated through the Stroome service or using the Stroome name, to prevent imminent bodily harm or in the event of a corporate sale, merger, reorganization, dissolution, or similar event. If the ownership of Stroome were to change, your user information may be transferred to the new owner so the service can continue operations. In any such transfer of information, your user information would remain subject to the terms of this Privacy Policy.
+
+While no method of data transmission is guaranteed against unlawful third party interception or other misuse and Stroome is not responsible for circumvention of any privacy settings or security measures contained on the site, Stroome uses commercially reasonable efforts to ensure protection of your data including industry-standard encryption and offline security methods in our physical facilities. Public Forums.
+
+In future iterations of this site, Stroome may make chat rooms, forums, message boards, and/or news groups available to its users. Please remember that any information that is disclosed in these areas becomes public information and you should exercise caution when deciding to disclose your personal information.
+
+### 7. Children
+
+Without limiting the generality of the foregoing, your account name (not your email address) is displayed to other users when you upload content ('Submitted Content') or add comments through the Stroome Site and other users can contact you through the same page via comment replies. Any Submitted Content that you submit to Stroome may be redistributed through the Internet and other media channels, and may be viewed by the general public through an embeddable player.
+Children.
+
+Stroome does not knowingly collect personal data from children under the age of thirteen or knowingly allow such persons to register. We recommend that minors over the age of thirteen ask their parents for permission before sending any information about themselves to anyone over the Internet. If you are under thirteen, please do not attempt to register or give us any personal data. If you have reason to believe that a child has provided personal data to Stroome, please contact us, and we will try to delete that information from our databases.
+Link to Other Sites.
+
+### 8. Link to Other Sites
+
+This privacy policy applies only to Stroome's website. Stroome's websites contain hyperlinks to websites that are not owned, maintained, or operated by Stroome or one of our affiliates. These hyperlinks are provided for your reference and convenience only and do not imply any endorsement of the activities of these third-party websites or any association with their operators. Stroome does not control these websites and is not responsible for their data practices. We urge you to review the privacy policy posted on any site you visit before using the site or providing any personal data about yourself.
+Governing Law.
+
+### 9. Governing Law
+
+This privacy policy forms part of our website Terms and Conditions and as such shall be governed by and construed in accordance with the laws of the State of California.
+Questions About Our Privacy Policy.
+
+### 10. Questions About Our Privacy Policy
+
+Stroome regularly reviews its compliance with this policy. If you have any questions about this privacy policy or concerns about the way Stroome processes your personal data, please contact us at [privacy@stroome.com](mailto:privacy@stroome.com).

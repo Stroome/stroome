@@ -1,0 +1,6 @@
+$('#email_invite_notice').fadeOut("fast", function() {
+  $(this)
+    .html( '<%= @notice %>' )
+    .addClass( 'notice' )
+    .fadeIn("fast");
+});

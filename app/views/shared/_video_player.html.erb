@@ -1,0 +1,25 @@
+<%
+  width = width || 400
+  height = height || 267
+%>
+<div class="d-b" style="width: <%= width %>px; height: <%= height %>px">
+  <div id="kplayer"></div>
+</div>
+<% content_for :script do %>
+<script>
+  var params = {
+      allowscriptaccess: "always",
+      allownetworking: "all",
+      allowfullscreen: "true",
+      wmode: "opaque"
+  };
+  var flashVars = {
+      entryId: "<%= video_id %>"
+  };
+  swfobject.embedSWF("http://www.kaltura.com/kwidget/wid/_<%= C.kaltura.partner_id %>",
+          "kplayer", "<%= width -%>", "<%= height -%>", "9.0.0", false, flashVars, params);
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

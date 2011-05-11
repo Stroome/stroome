@@ -1,0 +1,31 @@
+$(document).ready(function() {
+  $('#use-<%= @inbin_clip.id %>')
+    .html(
+        '<div class="fs-9">[Added To Project]</div>'
+    );
+  $('#clips-used-in-video').html(
+      '<%= escape_javascript(
+        render :partial => 'shared/clip_used_in_video',
+               :collection => @project.clips, :as => :clip
+      ) %>'
+  );
+  $('#clips-used-in-video').jcarousel({
+    buttonNextHTML: '<span class="next">older</span>',
+    buttonPrevHTML: '<span class="prev">newer</span>'
+  });
+
+  // TODO remove duplicate in _bind_lightbox_to_links
+  var config = {
+      padding: 0,
+      margin: 0,
+      modal: false,
+      titleShow: false,
+      overlayColor: '#fff',
+      overlayOpacity: 0.5,
+      centerOnScroll: true,
+      showCloseButton: false,
+      enableEscapeButton: true};
+
+  $('a.open-lightbox').fancybox(config);
+
+});

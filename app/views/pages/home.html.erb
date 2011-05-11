@@ -1,0 +1,125 @@
+<div id="main" role="main">
+  <div class="widget-box pos-r m-b-10">
+
+    <div class="m-5 p-b-5">
+      <%
+        _gallery_items = [
+          {:color => 'red', :content => 'Edit online anytime, anywhere with anyone'},
+          {:color => 'yellow', :content => 'Upload your own footage or remix thousands of user-submitted -- for free!'},
+          {:color => '#3CA7E2', :content => 'Connect with others and build your own community'},
+          {:color => '#616161', :content => 'Remix, trim, add transitions with the tools you’re used to use, online, for free'},
+          {:color => '#fff', :content => 'Share your work with the world, publish to Facebook, blogs or your own site'},
+          {:color => 'red', :coords => [258,120], :content => 'Thousands of clips, hundreds of collaborators, unlimited possibilities'}
+        ]
+        _gallery_items_size = _gallery_items.count
+        running = 0
+      %>
+      <ul class="accordion-gallery of-h pos-r l-ls-n" style="width: 1002px; height: 372px;">
+      <% _gallery_items.each do |item| %>
+        <% running += 1 %>
+        <li class="fl-l of-h <%= 'active' if running == 1 %>">
+          <div class="ag-container pos-r" style="width: 881px; height: 372px;">
+            <a href="#galleryimg<%= running %>"
+               class="ag-no-<%= running %> d-b ir pos-tl"
+               style="background-color: <%= item[:color] %>;">
+              <%= item[:content] %>
+            </a>
+            <%= image_tag(
+              "accordion-gallery/#{running}-content.jpg",
+              :alt => item[:content],
+              :class => 'pos-tr'
+            ) %>
+            <% if item[:coords] %>
+              <a href="<%= new_user_registration_path %>"
+                 class="pos-tl d-b register" 
+                 style="width: 318px; height: 54px; top: <%= item[:coords][1] %>px; left: <%= item[:coords][0] %>px;">
+                 &nbsp;
+              </a>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+
+    <div class="foot pos-a">
+      <div class="left-foot fl-l"></div>
+      <div class="right-foot fl-r"></div>
+      <div class="center-foot"></div>
+    </div>
+  </div>
+  <!-- gallery box -->
+
+  <div class="line m-h-15 p-b-20">
+    <div class="unit size2of3">
+
+      <div class="widget-box pos-r m-b-10">
+
+        <div class="bar bg-red m-1"></div>
+        <h3 class="_header fs-29 fg-333 p-h-15 m-b-10">
+          Community
+        </h3>
+
+        <div class="m-10 p-b-10 line">
+          <div class="unit size1of2">
+            <div style="border-right: 2px solid #f0f0f0;">
+              <%= render :partial => "shared/twitter_profile_widget" %>
+            </div>
+          </div>
+          <!-- .unit -->
+
+          <div class="unit size1of2">
+            <div class="m-l-20">
+              <%= render :partial => "shared/like_box" %>
+            </div>
+          </div>
+          <!-- .unit -->
+        </div>
+        <!-- .widget-box.line -->
+
+        <div class="foot pos-a">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+      </div>
+        
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3">
+      <div class="m-l-25">
+        <div class="widget-box pos-r m-b-10">
+
+          <div class="bar bg-yellow m-1"></div>
+          <h3 class="_header fs-29 fg-333 p-h-15 m-b-10">
+            How It Works
+          </h3>
+
+          <div class="m-10 line">
+            <ul id="hiw" class="m-0 tk-pnc f-tr-lc fs-20 f-l fg-333 l-ls-n">
+              <li class="m-b-30 img1">Upload your footage or, use existing clips</li>
+              <li class="m-b-30 img2">Work on projects alone or with others</li>
+              <li class="m-b-30 img3">Join groups that have common goals</li>
+              <li class="m-b-30 img4">Share your video with the world</li>
+            </ul>
+          </div>
+          <!-- .widget-box.line -->
+
+          <div class="foot pos-a">
+            <div class="left-foot fl-l"></div>
+            <div class="right-foot fl-r"></div>
+            <div class="center-foot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .unit -->
+  </div>
+</div>
+<!-- #main -->
+
+<% content_for :script do %>
+<%= javascript_include_tag 'mylibs/accordion-gallery.stroome' %>
+<script>$('.accordion-gallery').accordionGallery();</script>
+<% end %>

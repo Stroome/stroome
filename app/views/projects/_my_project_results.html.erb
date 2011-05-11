@@ -1,0 +1,66 @@
+<ul class="p-0 m-0 l-ls-n border-b18f">
+<%
+  len = @search.results.count 
+  running = 0
+%>
+<% @search.each_hit_with_result do |hit, project| %>
+  <% running += 1 %>
+  <li class="media p-v-15 m-h-15 p-h-6 <%= running == len ? 'last' : 'border-b18f'-%> ">
+
+    <div class="m-b-20 m-r-20 fl-l">
+      <%= render( 
+            :partial => 'shared/thumbnail',
+            :locals => {
+              :entry => project,
+              :width => 337,
+              :height => 191
+            }
+      ) %>
+    </div>
+
+    <div class="project-summary">
+
+      <h3 class="fs-14 f-b m-b-5 f-tr-cp">
+        <%= link_to project.title, manage_project_path(project) %>
+      </h3>
+      <p class="fs-10 fg-999">
+        <span class="duration">
+          <%= to_mins project.duration %>
+        </span>
+        <span class="rating m-l-10">
+          <%= render :partial => 'shared/ratings_static', :locals => { :rate_object => project } %>
+        </span>
+      </p>
+
+      <p><%= project.description %></p>
+      <p class="fs-10 fg-999 m-b-20">
+        <span class="f-tr-uc fs-11">Filed Under: </span>
+        <%= project_topic_links project.topics %>
+      </p>
+
+      <p>
+        <%= link_to(
+              t("resume_editor"),
+              (project.editor_type == 'basic' ? basic_editor_project_path(project) : advanced_editor_project_path(project)), 
+              {class: 'open-modalbox btn-blueg'}
+        ) %>
+      </p>
+      <p>
+        <%= link_to( 
+              t("manage_project"),
+              manage_project_path(project), 
+              {class: 'btn-blueg'}
+        ) %>
+      </p>
+
+    </div>
+    <!-- project summary -->
+  </li>
+<% end %>
+</ul>
+<div style="min-height: 25px;">
+  <%= render(
+    :partial => 'shared/will_paginate_with_remote_links',
+    :locals  => { :results => @search.results }
+  ) %>
+</div>

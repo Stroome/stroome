@@ -1,0 +1,41 @@
+<div class="widget-box pos-r border-b18f">
+  <div class="m-h-10 p-v-10">
+    <div class="clearfix">
+      <span class="fs-16">
+        <%= params[:can_manage] ?
+            'Members With Access To This Project' :
+            'Members Of This Project'
+        %>
+      </span>
+      <% if params[:can_manage] %>
+      <%= link_to(
+            "Invite Others",
+            invite_to_project_path(@project),
+            :class => "open-lightbox btn-blueg fs-16 d-b fl-r"
+      ) %>
+      <% end %>
+    </div>
+    <ul class="l-ls-n">
+      <li>
+        <%= render :partial => "project_member",
+                   :locals => { :user => @owner, :is_owner => true } %>
+      </li>
+      <% @project_members.each do |project_member| %>
+      <li id="project_member_user_<%= project_member.user.id %>">
+        <%= render :partial => "project_member",
+                   :locals => {
+                       :user => project_member.user,
+                       :delete_path => (params[:can_manage] ? delete_project_member_path(project_member) : nil),
+                       :is_owner => false
+                   } %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="foot pos-a bg-f0f0f0">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>
+<%= render :partial => "shared/bind_lightbox_to_links" %>

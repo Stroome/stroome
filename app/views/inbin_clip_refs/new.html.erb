@@ -1,0 +1,30 @@
+<div class="bar bg-black m-1"></div>
+
+<h2 class="_header p-10 fs-18 f-sb">
+  <%= @clip.title %>
+</h2>
+
+<%= form_tag(inbin_clip_refs_path, :remote => true, :id => 'add_clip_form') do |f| %>
+  <div style="width:300px; min-height: 100px;" class="m-10">
+    <% unless @notice.blank? %>
+      <div class="notice p-v-5 m-b-5"><%= @notice %></div>
+    <% end %>
+
+    <%= hidden_field_tag :clip_id, params[:clip_id] %>
+
+    <label for="add_to_bin">Add this clip to:</label>
+    <select name="add_to_bin" class="m-v-5 w-100p">
+      <option value="<%= InbinClipRefsController::CURRENT_USER_CLIP_BIN %>">Personal Clip Bin</option>
+      <%= grouped_options_for_select(@project_grouped_options, params[:add_to_bin])  %>
+    </select>
+  </div>
+
+  <div class="action p-10 f-ta-r">
+    <%= submit_tag(
+      "Save",
+      :style => 'width: 80px;',
+      :class => 'btn-blueg m-r-10'
+    ) %>
+    <%= link_to "Close", "javascript:$.fancybox.close();" %>
+  </div>
+<% end %>

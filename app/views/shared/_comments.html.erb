@@ -1,0 +1,95 @@
+<div class="widget-box pos-r border-b18f">
+  <% unless FBT.enable_project_invite_user %>
+  <h2 class="_header p-v-5 p-h-10 fs-24 fg-333 f-tr-lc">
+    Comments
+  </h2>
+  <% end %>
+  
+  <div id="comments" class="m-h-10 p-v-10">
+    <div id="comments_coll_wrapper">
+
+    </div>
+  </div>
+</div>
+<!-- .widget-box -->
+<div class="widget-box pos-r bg-f0f0f0">
+  <div class="m-h-10 p-v-10">
+    <div class="post_comment">
+      <%= form_tag(form_post_url, :remote => true, :html => {:id => 'comments'}) do %>
+        <label for="comment_text" class="f-b m-b-5 d-b">
+          Comment on this video 
+          <span id="comment_info" class="sidenotes m-l-5 fs-11"></span>
+        </label>
+        <% if @comment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+              <ul>
+                <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <div id="comment_box" class="area">
+          <%= text_area_tag(
+            :body, 
+            '', 
+            { :id => 'comment_text',
+              :class => 'w-98p',
+              :rows => 5 }
+          ) %>
+        </div>
+        <% if user_signed_in? %>
+            <div class="actions">
+              <%= submit_tag t("new_comment"), :id => "comment_button", :class => 'btn-blueg m-t-10' %>
+            </div>
+        <% else %>
+            <p>Please <%= link_to "Log In", new_user_session_path, :class => "open-lightbox" %> to leave a comment</p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="foot pos-a bg-f0f0f0">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>
+
+<% content_for :script do %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.get("<%= "#{comments_path}?#{param_string}" %>", function(result) {
+        $("#comments_coll_wrapper").html(result);
+    });
+
+    var $comment = $('#comment_text')
+      , $info = $('#comment_info')
+      , $button = $('#comment_button')
+      , limit = 300;
+
+    $button.attr('disabled', 'disabled');
+
+    $comment.keyup(function() {
+      var text = $comment.val(), len = text.length;
+
+      if (len < 1) {
+        $button.attr('disabled', 'disabled');
+      } else {
+        $button.removeAttr('disabled');
+      }
+
+      if (len > limit) {
+        $info.html('(You cannot write more then ' + limit + ' characters!)');
+        $comment.val(text.substr(0, limit));
+      } else {
+        $info.html('(' +(limit - len)+ ' characters remaining)');
+      }
+    }).trigger('keyup');
+  });
+</script>
+<% end %>
+
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

@@ -1,0 +1,11 @@
+<% content_for :result_filter do %>
+  <%= render :partial => 'shared/results_filter',
+             :locals => {
+                 :sort_options => ResultsHelper::SORT_OPTIONS_FOR_BROWSE,
+                 :alphabet_options => ResultsHelper::ALPHABET_OPTIONS
+             }%>
+<% end %>
+
+<% content_for :result_list do %>
+  <%= render :partial => 'group_results' %>
+<% end %>

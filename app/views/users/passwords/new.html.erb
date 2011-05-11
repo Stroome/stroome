@@ -1,0 +1,24 @@
+<%= content_for :title, "Reset Password" %>
+
+<div class="m-h-15 p-b-15">
+  <h2 class="_header fs-29 m-b-15">
+    Forgot your password?
+  </h2>
+
+  <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => {:method => :post}) do |f| %>
+    <p class="m-b-20">Enter you email into the text field below and you will soon receive instruction to reset your password</p>
+
+    <%= devise_error_messages! %>
+
+    <div class="field p-b-10">
+      <%= f.label :email %>
+      <%= f.text_field :email, :class => 'textinput m-t-10' %>
+    </div>
+
+    <%= f.submit(
+      "Send Me Instructions",
+      :class => 'btn-blueg fs-16',
+      :style => 'width: 180px;'
+    ) %>
+<% end %>
+</div>

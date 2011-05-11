@@ -1,0 +1,27 @@
+<div class="media m-b-10">
+  <div class="img">
+    <%= image_tag(
+            group.picture_url,
+            :width => 60,
+            :height => 60
+        ) %>
+  </div>
+
+  <div class="bd">
+    <strong><%= link_to group.title, group_path(group) %></strong>
+    <p>
+      <%= group.description %>
+    </p>
+  </div>
+
+  <% if local_assigns.has_key? :delete_path and not delete_path.nil? %>
+    <div class="imgExt">
+    <%= link_to(
+      "x",
+      delete_path,
+      :title => "Remove this group",
+      :class => "open-lightbox"
+    ) %>
+    </div>
+  <% end %>
+</div>

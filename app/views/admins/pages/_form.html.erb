@@ -1,0 +1,24 @@
+
+  <div class="group">
+    <%= f.label :title, t("activerecord.attributes.page.title", :default => "Page"), :class => :label %>
+    <div><%= @page.title %></div>
+  </div>
+
+  <div class="group">
+    <%= f.label :content_type, t("activerecord.attributes.page.content_type", :default => "Content type"), :class => :label %>
+    <%= f.select :content_type, ["markdown"], :class => 'text_field' %>
+  </div>
+
+  <div class="group">
+    <%= f.label :content, t("activerecord.attributes.page.content", :default => "Content"), :class => :label %>
+    <%= f.text_area :content, :class => 'text_area', :rows => 60 %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+        
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), admins_pages_path, :class => "text_button_padding link_button" %>
+</div>

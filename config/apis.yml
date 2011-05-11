@@ -1,0 +1,64 @@
+development:
+  kaltura:
+    session_expiry: 86400  # 1 day
+    partner_id: 1234567
+    subpartner_id: 1234567
+    admin_secret: 1234567
+    user_secret: 1234567
+  facebook:
+    app_id: 1234567
+    app_key: 1234567
+    app_secret: 1234567
+    page_url: www.facebook.com/pages/<your faceebok page path>
+  addthis:
+    pub_id: 1234567
+  google_analytics:
+    key: UA-XXXXXXX-1
+
+test:
+  kaltura:
+    session_expiry: 86400  # 1 day
+    partner_id: 1234567
+    subpartner_id: 1234567
+    admin_secret: 1234567
+    user_secret: 1234567
+  facebook:
+    app_id: 1234567
+    app_key: 1234567
+    app_secret: 1234567
+    page_url: www.facebook.com/pages/<your faceebok page path>
+  addthis:
+    pub_id: 1234567
+  google_analytics:
+
+staging:
+  kaltura:
+    session_expiry: 86400  # 1 day
+    partner_id: 1234567
+    subpartner_id: 1234567
+    admin_secret: 1234567
+    user_secret: 1234567
+  facebook:
+    app_id: 1234567
+    app_key: 1234567
+    app_secret: 1234567
+    page_url: www.facebook.com/pages/<your faceebok page path>
+  addthis:
+    pub_id: 1234567
+  google_analytics:
+
+
+  kaltura:
+    session_expiry: 86400  # 1 day
+    partner_id: 1234567
+    subpartner_id: 1234567
+    admin_secret: 1234567
+    user_secret: 1234567
+  facebook:
+    app_id: 1234567
+    app_key: 1234567
+    app_secret: 1234567
+    page_url: www.facebook.com/pages/<your faceebok page path>
+  addthis:
+    pub_id: 1234567
+  google_analytics:

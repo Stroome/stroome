@@ -1,0 +1,6 @@
+$('#comments').html(
+  '<%= escape_javascript(
+      render :partial => "shared/comments.html", :format => "html",
+        :locals => { :model => model, :form_post_url => form_post_url, :param_string => param_string }
+  ) %>'
+);

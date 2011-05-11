@@ -1,0 +1,229 @@
+<%= devise_error_messages! %>
+<%= form_for(
+      resource,
+      :as => resource_name,
+      :url => registration_path(resource_name),
+      :html => {
+        :id => 'user_form',
+        :method => form_method,
+        :multipart => true,
+        :class => 'bg-lblue p-b-10'
+      }
+) do |f| %>
+
+    <%= hidden_field_tag(:invite, params[:invite]) if params[:invite] %>
+
+    <fieldset>
+      <h3 class="_header fs-24 p-t-20 p-h-15 m-b-20">
+        Required Information 
+        <span class="fg-red sidenotes f-b fl-r pos-r">* <span class="visuallyhidden">is </span>Required</span>
+      </h3>
+
+      <div class="line m-l-15 m-b-10">
+        <div class="field unit size5of17">
+          <%= f.label :username, raw(
+              ( (f.object.nil? || f.object.new_record?) ? '<span class="required">*</span>' : '' ) + 'Username'
+          ) %>
+          <% if f.object.nil? || f.object.new_record? %>
+              <%= f.text_field :username,
+                               :validate => '{required:true, validchars:true, rangelength:[3,16], remote: "/users/check_username"}',
+                               :autofocus => 'autofocus' %>
+          <% else %>
+              <strong><%= @user.username %></strong>
+          <% end %>
+        </div>
+      </div>
+      <!-- .line -->
+
+      <div class="line m-l-15 m-b-10">
+        <div class="field unit size5of17 push1of17">
+          <%= f.label :email, raw('<span class="required">*</span>Email') %>
+          <br/>
+          <%= f.text_field :email, :validate => "{required: true, email: true, remote: '/users/check_email' }" %>
+        </div>
+        <div class="field unit size5of17">
+          <%= f.label :email_confirmation, raw('<span class="required">*</span>Confirm Email') %>
+          <br/>
+          <%= f.text_field :email_confirmation, :validate => "{required: true, equalTo: '#user_email'}" %>
+        </div>
+      </div>
+      <!-- .line -->
+
+      <% unless params[:from] == "fb" %>
+        <div class="line m-l-15 m-b-20">
+        <% if f.object.nil? || f.object.new_record? %>
+            <div class="field unit size5of17 push1of17">
+              <%= f.label :password, raw('<span class="required">*</span>Password') %>
+              <br/>
+              <%= f.password_field :password, :validate => "required: true, minlength: 6" %>
+            </div>
+            <div class="field unit size5of17 push1of17">
+              <%= f.label :password_confirmation, raw('<span class="required">*</span>Confirm Password') %>
+              <br/>
+              <%= f.password_field :password_confirmation, :validate => "{required: true, equalTo: '#user_password'}" %>
+            </div>
+        <% else %>
+            <div class="field unit size5of17 push1of17">
+              <%= f.label :password %>
+              <br/>
+              <span>**********</span>
+              <%= link_to 'Change password', change_password_path , { :class => 'open-lightbox button'}%>
+            </div>
+        <% end %>
+        </div>
+      <% end #of Facebook user not needed to enter password %>
+      <!-- .line -->
+    </fieldset>
+    
+    <fieldset>
+      <h3 class="_header fs-24 p-t-20 p-h-15 m-b-20">
+        Personalize Your Stroome Experience
+      </h3>
+
+      <div class="line m-l-15 m-b-20">
+
+        <div class="unit size11of17 push1of17">
+
+          <div class="line m-b-10">
+            <div class="field unit size5of11 push1of11">
+              <%= f.label :first_name %>
+              <br/>
+              <%= f.text_field :first_name %>
+            </div>
+            <div class="field unit size5of11 lastUnit">
+              <%= f.label :last_name %>
+              <br/>
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+          <!-- .line -->
+
+          <div class="line m-b-20">
+            <div class="field unit lastUnit">
+              <%= f.check_box :is_public %>
+              <%= f.label :is_public, 'Allow others to see my name on this site', :class => 'm-h-5' %>
+            </div>
+          </div>
+
+          <div class="line">
+
+            <div class="unit size5of11 push1of11">
+              <% unless f.object.nil? || f.object.new_record? %>
+              <div class="m-b-10">
+                <%=
+                    unless @user.picture_url.blank?
+                        image_tag(@user.picture_url)
+                    end
+                %>
+              </div>
+              <% end %>
+              <div class="field">
+                <%= label_tag :picture, raw('Upload Picture <span class="sidenotes">(formats: jpg, jpeg, gif, png)</span>') %>
+                <br/>
+                <%= f.file_field :picture %>
+              </div>
+              <div class="hidden">
+                <% '=f.label :remote_picture_url, "or from URL"' %>
+                <% '=f.text_field :remote_picture_url' %>
+              </div>
+            </div>
+            <!-- .unit -->
+
+            <div class="unit size5of11">
+              <div class="field">
+                <%= f.label :location, 'Location (city, state, country)' %>
+                <br/>
+                <%= f.text_field :location %>
+              </div>
+      
+              <div class="field">
+                <%= f.label :about_me %>
+                <br/>
+                <%= f.text_area :about_me, {:style => 'height:80px;'} %>
+              </div>
+            </div>
+            <!-- .unit -->
+
+          </div>
+          <!-- .line -->
+
+        </div>
+        <!-- .unit -->
+
+        <div class="unit lastUnit">
+          <label class="m-b-5 d-b">Topics I'm Interested In:</label>
+          <ul class="l-ls-n p-0 m-0">
+            <% Topic.all.each do |topic| %>
+                <li class="m-v-10">
+                  <%= check_box_tag 'user[interested_in_topic_ids][]', 
+                        topic.id,
+                        resource.interested_in_topics.include?(topic),
+                        { :class => 'd-ib w-auto', 
+                          :id => 'user_iitid_' + topic.id.to_s
+                        } %> 
+                  <%= f.label 'iitid_' + topic.id.to_s, topic.label %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- .unit -->
+
+      </div>
+      <!-- .line -->
+
+    </fieldset>
+
+    <div class="border-b18f b-10"></div>
+    
+    <div class="clearfix m-h-15 p-v-10">
+      <% _button_label = f.object.nil? || f.object.new_record? ? t("new_profile") : t("update_profile") %>
+      <%= f.submit _button_label, :class => 'fl-r btn-blueg' -%>
+      <% if f.object.nil? || f.object.new_record? %>
+        <div class="field fl-r m-t-8 m-r-20">
+          <%= f.check_box :terms_of_service %>
+          <label for="user_terms_of_service" class="m-h-5">
+            I Agree to the <%= link_to 'Terms and Conditions', terms_path %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+<% end %>
+
+<% content_for :script do %>
+<script>
+$(document).ready(function () {
+
+  $.validator.addMethod("validchars", function(val, el) {
+    return this.optional(el) || /^[a-zA-Z][a-zA-Z0-9]*\.?[a-zA-Z0-9]*$/.test(val);
+  }, "Start with a letter. You may use letters, numbers and one dot(.)");
+
+  var $agreeTerms = $('#user_terms_of_service');
+  $('#user_form')
+    .validate({
+      debug: true,
+      messages: {
+        'user[username]': {
+          remote: "This username is already taken, try a different one?",
+          rangelength: "Username should be 3 to 16 characters long."
+          
+        },
+        'user[email]': {
+          remote: "This email is already taken, try a different one?"
+        }
+      },
+      submitHandler: function(form){
+        if ($agreeTerms.length > 0 && !!!$agreeTerms.is(':checked')) {
+          alert('You have to accept the terms and conditions for us to create your account.');
+          return false;
+        }
+        form.submit();
+      }
+    })
+    ;
+
+});
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

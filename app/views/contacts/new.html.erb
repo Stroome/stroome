@@ -1,0 +1,159 @@
+<%= content_for :title, "Contact Us" %>
+
+<div id="main" role="main" class="m-h-15 clearfix">
+  <h2 class="_header fs-30 m-b-20">
+    Contact Us
+  </h2>
+
+  <div class="unit size2of3">
+    <div class="widget-box pos-r m-b-20 bg-f0f0f0">
+
+      <div class="p-15 border-b18f ec m-b-20">
+        <%= raw @contact_us %>
+        <% if false %>
+        <p>
+          We welcome communications relating to Stroome. 
+          Please provide your email address or telephone number if you would like a response to your message.
+        </p>
+        <p>
+          If you&rsquo;re experiencing technical difficulty with the website, 
+          or have questions about using or distributing Stroome,
+          please refer to our FAQ for answers to your questions.
+        </p>
+        <% end %>
+      </div>
+
+      <p class="fg-red f-b f-ta-r p-h-15">
+        * required
+      </p>
+
+      <%= form_tag(
+        submit_question_path,
+        :method => :post,
+        :id => "contact_form",
+        :class => 'd-b'
+      ) do %>
+
+        <div class="m-h-15 p-b-5">
+          <div class="line m-b-10">
+            <div class="unit size5of17 push1of17">
+              <%= label_tag(
+                :first_name, 
+                raw('<span class="fg-red">*</span> First Name')
+              ) %>
+              <br />
+              <%= text_field_tag(
+                "first_name",
+                params[:first_name],
+                :validate => "required: true",
+                :class => 'textinput'
+              ) %>
+            </div>
+            <div class="unit size5of17 ">
+              <%= label_tag(
+                :last_name,
+                raw('<span class="fg-red">*</span> Last Name')
+              ) %>
+              <br />
+              <%= text_field_tag(
+                "last_name",
+                params[:last_name],
+                :validate => "required: true",
+                :class => 'textinput'
+              ) %>
+            </div>
+          </div>
+
+          <div class="line m-b-10">
+            <div class="unit size5of17">
+              <%= label_tag(
+                :username,
+                "Username (Optional)"
+              ) %>
+              <br />
+              <%= text_field_tag(
+                "username",
+                params[:username],
+                :class => 'textinput'
+              ) %>
+            </div>
+          </div>
+
+          <div class="line m-b-10">
+            <div class="unit size5of17">
+              <%= label_tag(
+                :email,
+                raw('<span class="fg-red">*</span> Your Email')
+              ) %>
+              <br />
+              <%= text_field_tag(
+                "email",
+                params[:email],
+                :validate => "{required: true, email: true}",
+                :class => 'textinput'
+              ) %>
+            </div>
+          </div>
+
+          <div class="line m-b-10">
+            <div class="unit size1of1">
+              <%= label_tag "Enter your question" %><br />
+              <%= text_area_tag(
+                "question",
+                params[:question],
+                :validate => "required: true",
+                :rows => 5,
+                :class => 'textinput w-98p'
+              ) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b18f m-b-15"></div>
+
+        <div class="action p-b-15 f-ta-r p-h-15">
+          <%= submit_tag("Submit", :class => 'btn-blueg fs-16') %>
+        </div>
+      <% end %>
+
+      <div class="foot pos-a bg-f0f0f0">
+        <div class="left-foot fl-l"></div>
+        <div class="right-foot fl-r"></div>
+        <div class="center-foot"></div>
+      </div>
+    </div>
+    <!-- widget -->
+  </div>
+
+  <div class="unit size1of3">
+    <div class="m-l-20 lh-1dot5">
+      <%= raw @contact_address %>
+      <% if false %>
+      <h3 class="fs-12 f-b m-b-20">
+        Stroome mailing address:
+      </h3>
+
+      <address class="d-b m-b-20">
+        <strong>
+          Stroome Headquarters<br />
+          123 Main Drive<br/>
+          Los Angeles, CA 90045
+        </strong>
+      </address>
+
+      <h4 class="f-tr-uc f-b">Phone</h4>
+      <p><strong>
+        Telephone: (800) 123-1234<br/>
+        Fax: (800) 123-1234
+      </strong></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :script do %>
+<script>$('#contact_form').validate();</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

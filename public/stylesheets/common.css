@@ -1,0 +1,84 @@
+.hlist li
+{
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+.hlist-compact li {
+  display: block;
+  list-style-type: none;
+  float: left;
+
+  padding-right: 5px;
+}
+
+
+.hlist-uniform li {
+  display: block;
+  list-style-type: none;
+  width: 120px;
+  float: left;
+  padding: 0;
+}
+
+.nobullet {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.divider li {  border-left: 1px solid gray; }
+
+.right { text-align:right; }
+
+.middle { vertical-align:middle; }
+
+.vtop { vertical-align:top; }
+
+#fancybox-wrap {
+  top: 20px;
+  bottom: auto;
+}
+
+img.thumb {
+  width: 50px;
+}
+
+form textarea {
+  width: 20em;
+  height: 5em;
+}
+
+br {
+  clear: both;
+}
+
+.slider-thumb {
+  height: 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+
+.jcarousel-skin-tango .jcarousel-container-horizontal,
+.jcarousel-skin-tango .jcarousel-clip-horizontal {
+  width: 400px;
+  height: 50px;
+}
+.jcarousel-item img {
+  width: 100%;
+  height: 50px;
+}
+
+.clip-thumbnail .ui-button-text {
+  line-height: 1;
+  padding: 2px 5px;
+}
+
+.ajaxful-rating-wrapper {
+  display: inline-block;
+}

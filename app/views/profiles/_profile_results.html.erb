@@ -1,0 +1,74 @@
+<%
+  len = @search.results.count 
+  running = 0
+%>
+<div id="results">
+  <ul class="p-0 m-0 l-ls-n border-b18f">
+  <% @search.results.each do |user| %>
+    <% running += 1 %>
+    <li class="line media p-v-15 m-h-0 p-h-20 <%= running == len ? 'last' : 'border-b18f'-%> ">
+
+      <div class="unit size1of6">
+        <div class="thumb d-b pos-r" style="width: 128px; height: 129px;">
+          <a title="<%= user.username %>" href="<%= profile_path(user) %>" class="d-b">
+            <%= image_tag(
+              user.picture_url,
+              :class => 'm-center d-b'
+            ) %>
+          </a>
+        </div>
+      </div>
+      <!-- .unit -->
+
+      <div class="unit size1of3 m-r-15">
+
+        <h3 class="fs-14 f-b lh-1dot25 f-tr-cp">
+          <%= link_to user.username, profile_path(user) %>
+        </h3>
+
+        <p class="fs-11 fg-999">
+          <% if user.can_show_fullname? && user.fullname.strip != '' %>
+            <%= user.fullname %>
+            <br />
+          <% end %>
+
+          Member since: <%= user.created_at.strftime("%m/%y") %>
+          <br />
+
+          Location: <%= user.location %>
+        </p>
+
+        <p class="p-t-20">
+          <%= user.about_me %>
+        </p>
+
+      </div>
+      <!-- .unit project summary -->
+
+      <div class="unit size1of3 lh-1dot25">
+        <ul class="l-ls-n m-0">
+          <li>
+            <strong>
+              Total projects: <%= user.total_projects %>
+            </strong>
+          </li>
+          <li>Total clips: <%= user.total_clips %></li>
+          <li>Total views: <%= user.total_views %></li>
+          <li>Total likes: <%= user.total_likes %></li>
+          <li># of times projects remixed: <%= user.times_projects_remixed %></li>
+        </ul>
+
+        <p class="p-t-20 fs-11">Interests: <%= project_topic_links user.interested_in_topics %></p>
+      </div>
+      <!-- .unit -->
+    </li>
+  <% end %>
+  </ul>
+
+  <div class="p-t-15 p-b-10">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals  => { :results => @search.results }
+    ) %>
+  </div>
+</div>

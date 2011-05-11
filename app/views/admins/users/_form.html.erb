@@ -1,0 +1,51 @@
+
+  <div class="group">
+    <%= f.label :username, t("activerecord.attributes.user.username", :default => "Username"), :class => :label %>
+    <%= f.text_field :username, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :email, t("activerecord.attributes.user.email", :default => "Email"), :class => :label %>
+    <%= f.text_field :email, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :first_name, t("activerecord.attributes.user.first_name", :default => "First name"), :class => :label %>
+    <%= f.text_field :first_name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :last_name, t("activerecord.attributes.user.last_name", :default => "Last name"), :class => :label %>
+    <%= f.text_field :last_name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :location, t("activerecord.attributes.user.location", :default => "Location"), :class => :label %>
+    <%= f.text_field :location, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :about_me, t("activerecord.attributes.user.about_me", :default => "About me"), :class => :label %>
+    <%= f.text_area :about_me, :class => 'text_area' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :is_public, t("activerecord.attributes.user.is_public", :default => "Is public"), :class => :label %>
+    <%= f.check_box :is_public, :class => 'check_box' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), admins_users_path, :class => "text_button_padding link_button" %>
+</div>

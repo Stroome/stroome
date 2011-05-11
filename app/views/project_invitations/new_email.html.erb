@@ -1,0 +1,18 @@
+<p>Invite users that don't have an account on Stroome yet!<br/>
+Please note - your friend will have to create an account in order to access your project.</p>
+
+<% form_for @invitation do |f| %>
+  <%= f.label :receiver_name, "Name" %>
+  <%= f.text_field :receiver_name %>
+  <br/>
+
+  <%= f.label :receiver_email, "Email" %>
+  <%= f.text_field :receiver_email %>
+  <br/>
+
+  <%= f.label :message %>
+  <%= f.text_area :message %>
+  <br/>
+
+  <%= f.submit "Send" %>
+<% end %>

@@ -1,0 +1,155 @@
+<%
+  can_change_per_page = true unless local_assigns.has_key? :can_change_per_page
+  can_search = true unless local_assigns.has_key? :can_search
+  alphabet_options = [] unless local_assigns.has_key? :alphabet_options
+  filter_full = filter_full || false
+%>
+<%= form_tag '', :method => :get, :remote => true, :id=> 'filter-form' do %>
+
+  <% if can_change_per_page %>
+  <div class="fl-r m-r-15 lh-1dot5">
+    Show 
+    <%= select_tag(
+      :per_page,
+      options_for_select(PaginationHelper::PER_PAGE_OPTIONS, params[:per_page])
+    ) %> per page
+  </div>
+  <% end %>
+
+  <div class="sort-options p-t-5 border-b18f p-b-10">
+    <ul class="nav m-0 fg-shinyblue f-tr-lc">
+      <% _running = 0 %>
+      <% sort_options.each do |option| %>
+        <% _running += 1 %>
+        <li class="<%= 'first' if _running == 1 %> p-h-15">
+        <% '# disable sort options when Browse Members' %>
+        <% if (["profiles", "groups"].include? params[:controller] and params[:q].blank?) %>
+          <span class="fg-999"><%= option[0] %></span>
+        <% else %>
+          <%= radio_button_tag(
+            'sort',
+            option[1],
+            option[1] == params[:sort],
+            :class => 'visuallyhidden checked-label-highlight'
+          ) %>
+          <%= label_tag "sort_#{ option[1] }", option[0] %>
+        <% end %>
+        </li>
+      <% end %>
+      <li class="last">
+        <%= link_to 'Filter', '#', :id => "filter-toggle", :class => 'skip' %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="filter-topics bg-f0f0f0 p-10 m-t-10 <%= 'size4of5' unless filter_full %>">
+    <div class="line">
+      <div class="unit size1of5">
+        <%= params[:controller] == 'profiles' ?
+          'Filter By Interest ':
+          'Filter By Category' 
+        %>
+      </div>
+      <!-- .unit -->
+
+      <div class="unit size4of5">
+        <%
+          topics_array = [[],[],[]]
+          topics = Topic.all
+
+          list_extra = topics.count % 3
+          list_avg_size = topics.count / 3
+          running = 0
+
+          (0..2).each do |i|
+            _extra = 0
+            if list_extra == 2 && list_extra == 1
+              _extra = 1
+              list_extra -= 1
+            end
+
+            topics.slice!(
+              0, list_avg_size + _extra
+            ).each do |t|
+              topics_array[i] << t
+            end
+          end
+
+        %>
+
+        <div class="line m-l-10">
+          <% topics_array.each do |t| %>
+            <div class="unit size1of3">
+              <%= render(
+                :partial => 'shared/topic_checkbox_list',
+                :locals => {
+                  :field_name => 'topic_ids[]',
+                  :field_array => params[:topic_ids],
+                  :topics => t
+                }
+              ) %>
+            </div>
+            <!-- .unit -->
+          <% end %>
+        </div>
+        <!-- .line -->
+
+      </div>
+      <!-- .unit -->
+    </div>
+    <!-- .line -->
+
+  </div>
+
+  <% if not alphabet_options.blank? and params[:q].blank? %>
+  <%= render :partial => 'shared/alphabet_filter',
+             :locals  => {
+                :alphabet_options => alphabet_options
+  } %>
+  <% end %>
+
+  <% if can_search %>
+  <%= hidden_field_tag :q, params[:q] %>
+  <% end %>
+
+  <input type="submit" value="Filter" class="visuallyhidden" />
+<% end %>
+<% content_for :script do %>
+<script>
+$(document).ready(function() {
+  $('#filter-form :submit').hide();
+
+  <% if params[:topic_ids].blank? %>
+  $(".filter-topics").hide();
+  <% end %>
+
+  $('.sort-options :radio, .filter-topics :checkbox, .filter-alphabets :radio, #per_page').bind('change', function() {
+    $('#filter-form').submit();
+  });
+  $('#filter-toggle')
+    .bind('click', function(ev) {
+      ev.preventDefault();
+
+      $('.filter-topics :checkbox').attr('checked', false);
+      $('#filter-form').submit();
+      $('.filter-topics').slideToggle('fast');
+    });
+});
+/* TODO: delay $('#filter-form').submit() on .filter-options :checkbox change
+(function() {
+ var time = 800, timeoutCache;
+
+ timeoutCache = setTimeout(functionToSendAjax, time);
+
+ function functionToSendAjax(){
+   clearTimeout(timeoutCache);
+   // …………
+   setTimeout(functionToSendAjax, time)
+}
+});
+*/
+</script>
+<% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

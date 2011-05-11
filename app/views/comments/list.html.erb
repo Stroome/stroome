@@ -1,0 +1,32 @@
+<div id="comment_list">
+  <ul class="comments l-ls-n m-0">
+    <% @comments.each do |c| %>
+    <li id="comment-<%= c.id %>" class="m-b-5">
+      <h4>
+        <a rel="profile" href="<%= profile_path(c.user) %>" class="fg-shinyblue f-b">
+          <%= c.user.username if c.user %>
+        </a>
+        <span class="fg-999 f-nb">
+          (<%= time_ago_in_words(c.created_at) %> ago)
+        </span>
+        <% # TODO extract method: current_user.can_delete_comment?(c) %>
+        <% if admin_signed_in? or (user_signed_in? and (not c.project.blank? and c.project.user_id == current_user.id )) %>
+          <%= link_to "delete",
+                      delete_comment_path(c),
+                      :class => "open-lightbox" %>
+        <% end %>
+      </h4>
+      <div class="m-10">
+        <%= c.body %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+  <div class="p-t-15 p-b-10">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals  => { :results => @comments }
+    ) %>
+  </div>
+</div>
+<%= render :partial => "shared/bind_lightbox_to_links" %>

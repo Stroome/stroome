@@ -1,0 +1,8 @@
+<%= render(
+  :partial=> "shared/related_results",
+  :locals => {
+    :entry_path_callback => lambda {|entry, current_user| clip_path(entry) },
+    :list_id => "morelikethis-result-list",
+    :entries => @search.results
+  }
+) %>

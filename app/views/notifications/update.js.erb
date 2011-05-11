@@ -1,0 +1,5 @@
+$("#notification_<%= @notification.id %>").html(
+  '<%= escape_javascript(
+    render :partial => "notification", :locals => { :notification => @notification }
+  )%>'
+);

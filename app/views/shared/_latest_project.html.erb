@@ -1,0 +1,70 @@
+<%
+  show_player = show_player || false
+%>
+<% if show_manage_link %>
+  <div class="fl-r">
+    <%= link_to( 
+          'manage', 
+          manage_project_path(project), 
+          {:class => 'button'}
+    )-%>
+  </div>
+<% end %>
+
+<div class="media m-0">
+
+    <div class="p-b-20 m-r-20 fl-l">
+      <% if show_player %>
+        <%= render( 
+              :partial => 'shared/video_player',
+              :locals => {
+                :video_id => project.video_id,
+                :width => 337,
+                :height => 216#191
+              }
+        ) %>
+      <% else %>
+        <%= render( 
+              :partial => 'shared/thumbnail',
+              :locals => {
+                :entry => project,
+                :width => 337,
+                :height => 191
+              }
+        ) %>
+      <% end %>
+    </div>
+
+    <% 'Following by video details' %>
+    <h3>
+      <%= link_to( 
+            project.title,
+            project_path_by_current_user(project, current_user),
+            { :class => 'fg-333 fs-14' }
+      )-%>
+    </h3>
+
+    <p class="m-b-20">
+      by 
+      <%= link_to( 
+            project.user.username,
+            profile_path(project.user),
+            { :class => 'f-tr-cp' }
+      )-%>
+    </p>
+    <p class="m-b-10"><%= project.description %></p>
+    <p class="m-b-10 fs-10 fg-999">
+      <span class="f-tr-uc">Filed Under</span>: 
+      <%= project_topic_links project.topics %>
+    </p>
+
+    <p>
+      <%= link_to( new_project_path(:remix => project.id), { :class => 'btn-blueg open-lightbox' } ) do %>
+        <%= t("remix_project") %>
+        <span class="decorator"></span>
+      <% end %>
+    </p>
+
+</div>
+
+<%= render :partial=> "shared/bind_lightbox_to_links" %>

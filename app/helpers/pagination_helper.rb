@@ -1,0 +1,8 @@
+module PaginationHelper
+
+  PER_PAGE_OPTIONS = [5, 10, 15, 20]
+  DEFAULT_BROWSE_PER_PAGE = 5
+  COMMENT_BROWSE_PER_PAGE = 10
+  
+
+end

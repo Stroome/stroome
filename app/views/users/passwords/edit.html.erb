@@ -1,0 +1,34 @@
+<%= content_for :title, "Change your password" %>
+
+<div class="m-h-15 p-b-15">
+  <h2 class="_header fs-29 m-b-15">
+    Change your password?
+  </h2>
+
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :put}) do |f| %>
+    <%= devise_error_messages! %>
+
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="field p-b-10">
+      <%= f.label :password %>
+      <%= f.password_field(
+        :password,
+        :class => 'textinput m-t-10'
+      ) %>
+    </div>
+
+    <div class="field p-b-10">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field(
+        :password_confirmation,
+        :class => 'textinput m-t-10'
+      ) %>
+    </div>
+
+    <%= f.submit(
+      "Change my password",
+      :class => 'btn-blueg fs-16'
+    ) %>
+  <% end %>
+</div>

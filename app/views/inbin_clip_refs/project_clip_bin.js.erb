@@ -1,0 +1,12 @@
+$("#projectclipbin-result-list").parent().html(
+  '<%= escape_javascript(
+    render(
+      :partial=> "shared/related_results",
+      :locals => {
+        :entry_path_callback => lambda {|entry, current_user| clip_path(entry) },
+        :list_id => "projectclipbin-result-list",
+        :entries => @results
+      }
+    )
+  )%>'
+);

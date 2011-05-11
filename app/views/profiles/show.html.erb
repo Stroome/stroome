@@ -1,0 +1,131 @@
+<div id="main" role="main">
+
+  <h2 class="_header fs-29 m-h-15 p-t-10 m-b-20">
+    Profile <%= @user.username.titleize %>
+  </h2>
+  <% content_for :title do %>
+    Profile <%= @user.username.titleize %>
+  <% end %>
+  
+  <div class="line m-h-15 p-b-10">
+
+    <div class="unit size2of3">
+
+      <% 'Loading latest project of user and list of projects by user' %>
+      <%= render(
+          :partial => 'shared/latest_projects_box',
+          :locals => {
+            :show_manage_link => (user_signed_in? and @user.id == current_user.id),
+            :all_projects_same_owner => true,
+            :projects => @user_latest_projects,
+            :show_player => true
+          }
+      ) %>
+
+      <div class="widget-box pos-r m-b-20">
+
+        <div class="bar bg-red m-1"></div>
+
+        <h3 class="_header fg-333 fs-20 p-v-5 f-tr-lc p-h-15">
+          Activity Stream
+        </h3>
+
+        <% if FBT.enable_activity_stream %>
+
+        <div id="activity_stream_container"></div>
+
+        <% else %>
+        <div>
+          <div class="m-10" style="min-height: 180px;">
+            <%= render :partial => 'shared/coming_soon_activity_stream' %>
+
+          </div>
+
+          <div class="border-b18f"></div>
+          <div style="height: 20px;"></div>
+        </div>
+
+        <div class="foot pos-a">
+          <div class="left-foot fl-l"></div>
+          <div class="right-foot fl-r"></div>
+          <div class="center-foot"></div>
+        </div>
+        <% end #endif FBT %>
+      </div>
+      <!-- widget -->
+    </div>
+    <!-- .unit -->
+
+    <div class="unit size1of3 lastUnit">
+      <div class="m-l-25">
+        <%= render(
+              :partial => 'shared/profile_box',
+              :locals => {
+                is_profile_owner: (user_signed_in? and @user.id == current_user.id),
+                user: @user
+              }
+        ) %>
+
+        <div class="widget-box pos-r m-b-20">
+
+          <div class="bar bg-red m-1"></div>
+          <% if FBT.enable_group %>
+          <% if (user_signed_in? and @user.id == current_user.id) %>
+          <div class="fl-r m-h-10 p-v-10">
+            <%= link_to 'manage', my_groups_path %>
+          </div>
+          <% end %>
+          <% end %>
+        
+          <h3 class="_header fg-333 fs-20 p-v-5 f-tr-lc p-h-15">
+            groups
+          </h3>
+
+          <% if FBT.enable_group %>
+
+          <div id="my_group_summary_container"></div>
+
+          <% else %>
+          <div>
+            <div class="m-10" style="min-height: 150px;">
+              <p class="m-b-15">
+                This is where all the groups you've created or joined show up.
+              </p>
+
+              <p class="fs-16">coming soon</p>
+
+            </div>
+
+            <div class="border-b18f"></div>
+            <div style="height: 20px;"></div>
+          </div>
+          <% end %>
+          
+          <div class="foot pos-a">
+            <div class="left-foot fl-l"></div>
+            <div class="right-foot fl-r"></div>
+            <div class="center-foot"></div>
+          </div>
+        </div>
+        <!-- widget -->
+      </div>
+    </div>
+    <!-- .unit -->
+
+  </div>
+  <!-- .line -->
+
+</div>
+<!-- #main -->
+
+<% content_for :script do %>
+
+  <% if FBT.enable_group %>
+  <script>$('#my_group_summary_container').load('<%= user_groups_path(@user) %>');</script>
+  <% end %>
+
+  <% if FBT.enable_activity_stream %>
+  <script>$('#activity_stream_container').load('<%= user_activities_path(@user, :noborder => "true") %>');</script>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stroome Admin</title>
+  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => true %>
+  <style>.hide {display:none;}</style>
+  <%= javascript_include_tag 'jquery', 'rails', 'application' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="<%= admins_root_path %>">Stroome Admin</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <li><%= link_to "Admin Profile", edit_admin_registration_path %></li>
+          <li><a target="_blank" href="/">View Stroome Site</a></li>
+          <% if admin_signed_in? %>
+            <li><a href="<%= destroy_admin_session_path %>" class="logout"><%= t("web-app-theme.logout", :default => "Admin Logout") %></a></li>
+          <% else %>
+            <li><%= link_to "Admin Login", new_admin_session_path, :class => "logout" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% if admin_signed_in? %>
+      <div id="main-navigation">
+        <ul class="wat-cf">
+          <li class="<%= controller.controller_path == 'admins/dashboard' ? 'active' : '' %>"><a href="<%= admins_root_path %>">Dashboard</a></li>
+          <li class="<%= controller.controller_path == 'admins/logo' ? 'active' : '' %>"><a href="<%= admins_logo_path %>">Logo</a></li>
+          <li class="<%= controller.controller_path == 'admins/users' ? 'active' : '' %>"><a href="<%= admins_users_path %>">Users</a></li>
+          <li class="<%= controller.controller_path == 'admins/comments' ? 'active' : '' %>"><a href="<%= admins_comments_path %>">Comments</a></li>
+          <li class="<%= controller.controller_path == 'admins/translations' ? 'active' : '' %>"><a href="<%= admins_translations_path %>">Labels</a></li>
+          <li class="<%= controller.controller_path == 'admins/topics' ? 'active' : '' %>"><a href="<%= admins_topics_path %>">Topics</a></li>
+         <li class="<%= controller.controller_path == 'admins/pages' ? 'active' : '' %>"><a href="<%= admins_pages_path %>">Pages</a></li> <li class="<%= controller.controller_path == 'admins/settings' ? 'active' : '' %>"><a href="<%= admins_settings_path %>">Settings</a></li></ul>
+      </div>
+      <% end %>
+    </div>    
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="main">
+        <%= yield %>
+        <div id="footer">
+          <div class="block">
+          </div>
+        </div>
+      </div>
+      <div style="display:none">
+        <%= yield :sidebar %>
+      </div>
+      <div id="sidebar">
+        <%= yield :side_panel %>
+      </div>
+    </div>    
+  </div>
+</body>
+</html>

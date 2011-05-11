@@ -1,0 +1,138 @@
+Last Modified on April 12, 2011
+
+
+**PLEASE READ THIS AGREEMENT CAREFULLY; THIS IS A BINDING CONTRACT.**
+
+Welcome to the stroome.com website (the “**Site**”).  This Terms of Use (this “**ToU**”) describes the terms and conditions applicable to your access and use of the Site and the products and services offered through, or in connection with the Site and the Stroome Network (collectively, the “**Service**”).   This ToU sets forth the terms and conditions under which Stroome, Inc. (“**Stroome**,” “**we**,” or “**us**”) provides you access to the Site, the Stroome Network and the Service.  As used in this ToU, the term “Stroome Network” means the network of content made available to end users of the Service that is distributed through Stroome’s implementation of the Kaltura Player/Editor.  More information on the Kaltura Player/Editor is available at corp.kaltura.com. 
+
+We may amend this ToU at any time by posting the amended Terms of Use on the Site, and you agree that you will be bound by any changes to this ToU.  For your convenience, the date of last revision is included at the top of this page.  Stroome may make changes to the Site, the Stroome Network and/or the Service at any time.  You understand that Stroome may discontinue or restrict your use of the Site, Stoome Network and/or Service for any reason or no reason with or without notice.   
+
+Your use of the Site, the Stroome Network and/or the Service signifies that you agree to this ToU and constitutes your binding acceptance of This ToU, including any modifications that Stroome makes from time to time.  
+
+### 1. Requirements; Privacy Policy and Additional Terms
+
+By accepting this ToU you represent that you have read and consent to our Privacy Policy, located at [URL].  Your use of this Site, the Stroome Network and the Service may also be subject to additional terms, codes of conduct or guidelines that may be outlined as additional terms on the Site, (collectively, the "**Additional Terms**").  
+
+Before you can use certain aspects of the Stoome Network or the Service, you must: (a) agree to this ToU; (b) register for an account on the Service (an “**Account**”).  These requirements may change as the Service evolves.  You are responsible for any internet connection fees that you incur when accessing the Service. 
+
+### 2. Accounts
+
+A.  To access certain aspects of the Stroome Network and the Service, you must create an Account by completing the registration process.  You may create only one (1) Account and you must complete the registration process by providing current, complete and accurate information (including your email address) when prompted.  If your contact information changes, you agree that you will promptly update the Account information to reflect those changes.  
+
+B.  Maintaining Account security is very important.  You are entirely responsible for maintaining the confidentiality of the Account username and password.  You agree to notify Stroome immediately if you believe that your Account username and/or password have been compromised.  
+
+C.  You may not share or transfer any Account.  You may not disclose your username and password to anyone.   
+
+D.  You have the right to cancel any Account registered to you at any time.  You may cancel any Account registered to you by following the instructions on the Site.  
+
+E.  If you voluntarily terminate an Account or allow that Account to lapse, you may reactivate that Account at any time through the account interface on the Site.  Accounts terminated by Stroome for any type of abuse, including without limitation a violation of these ToU, may not be reactivated for any reason.
+
+### 3.  Restrictions and Conditions of Use.
+
+A.  Stroome permits you to view and use a single copy of the Site for your personal, non-commercial use.  With the exception of your ability to edit User Submitted Media (defined below) through the Service, you agree not to license, create derivative works from, transfer, sell or re-sell any information, content, or services obtained from the Site, the Stroome Network and/or Service. 
+
+B.  You agree that you will not, in connection with your use of the Site, Stroome Network or the Service, violate any applicable law or regulation.  Without limiting the foregoing, you agree that you will not make available through the Site, Stroome Network and/or Service any material or information that infringes any copyright, trademark, patent, trade secret, or other right of any party (including rights of privacy or publicity). 
+
+C.  You may not connect to or use the Site, Stroome Network and/or Service in any way not expressly permitted by this ToU.  Without limiting the foregoing, you agree that you will not (i) institute, assist, or become involved in any type of attack, including without limitation denial of service attacks, upon the Site, Stroome Network and/or Service or otherwise attempt to disrupt the Site, Stroome Network and/or Service or any other person's use of the Site, Stroome Network and/or Service; or (ii) attempt to gain unauthorized access to the Site, Stroome Network, Service, Accounts registered to other users, or the computer systems or networks connected to the Site, Stroome Network and/or Service. 
+
+D.  You agree that you will not use the Stroome Network, the Site or the Service for any commercial purpose or charge any person, or receive any compensation for, the use of the Stroome Network, the Site or Service. 
+
+E.  You agree that you will not (i) obtain or attempt to obtain any information from the Service using any method not expressly permitted by Stroome; (ii) intercept, examine or otherwise observe any proprietary communications protocol used by the Stroome Network or the Service, whether through the use of a network analyzer, packet sniffer or other device; (iii) use any type of bot, spider, virus, clock, timer, counter, worm, software lock, drop dead device, Trojan-horse routing, trap door, time bomb or any other codes, instructions or third-party software that is designed to provide a means of surreptitious or unauthorized access to, or distort, delete, damage or disassemble, the Stroome Network, the Site or the Service, including, without limitation, accessing the Site in a manner that sends more request messages to the Stroome servers in a given period of time than a human can reasonably produce in the same period by using a conventional on-line web browser. Notwithstanding the foregoing, Stroome grants the operators of public search engines permission to use spiders to copy materials from the site for the sole purpose of creating publicly available searchable indices of the materials, but not caches or archives of such materials. Stroome reserves the right to revoke these exceptions either generally or in specific cases.  
+
+F.  Stroome, at it sole discretion, may deactivate, suspend, or terminate our services and Accounts, prohibit access to areas or the entirety of the Site, remove content, including, without limitation, User Submitted Media (defined below), and take other technical or legal steps to keep users from accessing the Site if they are acting in a manner inconsistent with this ToU, Additional Terms or other policies or guidelines instituted by Stroome from time to time.
+
+
+### 4.  User Submitted Media
+
+A. The Service may now or in the future permit the submission of videos, photos, text, audio, audiovisual works and other forms of media, or other communications submitted by you and other users ("User Submitted Media") and the hosting, sharing, importing, editing, remixing, and/or publishing of such User Submitted Media. You understand that whether or not such User Submitted Media is published, Stroome DOES NOT GUARANTEE ANY CONFIDENTIALITY with respect to any submissions.   
+
+B. You shall be solely responsible for your own User Submitted Media and the consequences of posting or publishing them. In connection with User Submitted Media, you affirm, represent, and/or warrant that: (i) you own or have the necessary licenses, rights, consents, and permissions, patents, trademarks, trade secrets, copyrights or other proprietary rights to use and authorize Stroome, and other users of the Site, Stroome Network or Service to include and use your User Submitted Data in the manner contemplated by the Website and these ToU; and (ii) you have the written consent, release, and/or permission of each and every identifiable individual person in the User Submitted Media to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of the User Submitted Media in the manner contemplated by these ToU or any other Additional Terms.
+
+C.You hereby grant Stroome a non-exclusive irrevocable, sublicensable, transferable, worldwide, paid-up right to reproduce, fix, adapt, modify, translate, reformat, create derivative works from, manufacture, introduce into circulation, publish, distribute, sell, license, sublicense, transfer, rent, lease, transmit, publicly display, publicly perform, or provide access to electronically, broadcast, communicate to the public by telecommunication, display, perform, enter into computer memory, and use and practice your User Submitted Media as well as all modified and derivative works thereof, without compensation to you, subject to the permissions you set on such User Submitted Media through your Account. None of the User Submitted Media will be subject to any obligation, whether of confidentiality, attribution or otherwise, on our part and we will not be liable for any use or disclosure of any User Submitted Media. 
+
+D.  In addition to the rights granted to Stroome, you hereby grant any other users of the Stroome Network and the Service a worldwide, royalty-free, non-exclusive, perpetual license to exploit your User Submitted Media pursuant to the Creative Commons Attribution-Share Alike 3.0 Unported license (the “CC License”).  You may read the terms of the CC license at http://creativecommons.org/licenses/by-sa/3.0/legalcode.  
+
+E.  Subject to the rights granted to us in subpart 4.C above, you retain all of your ownership rights in your User Submitted Media. 
+
+F. You further agree that you will not: (i) publish falsehoods or misrepresentations that could damage Stroome or any third party; (ii) submit material that is unlawful, obscene, defamatory, libelous, threatening, pornographic, harassing, hateful, racially or ethnically offensive, or encourages conduct that would be considered a criminal offense, give rise to civil liability, violate any law, or is otherwise inappropriate or offensive as determined by Stroome in its sole discretion; (iii) post advertisements or solicitations of business; (iv) engage in activity that constitutes phishing or pharming or impersonate another personor steal or assume any person's identity (whether a real identity or online nickname or alias); (v) in any way obstruct or otherwise interfere with the normal performance of another person's use of the Site, the Stroome Network and/or Service; (vi) post any User Submitted Media that is harmful to children in any manner. 
+
+The following are examples of User Submitted Media that violate this Section F.  The foregoing list is for illustrative purposes and is not meant to be exhaustive.  User Submitted Media that violate this ToU include but is not limited to content that:
+
+* contains explicit sexual acts, excessive violence, or offensive subject matter or contains a link to an adult website; solicits personal information from anyone ;
+* involves the transmission of surveys, contests, pyramid schemes, chain letters, junk e-mail, spamming or any duplicative or unsolicited messages (commercial or otherwise);
+* contains restricted or password only access pages or hidden pages or images (those not linked to or from another accessible page);
+* furthers or promotes any criminal activity or enterprise or provides instructional information about illegal activities including, but not limited to making or buying illegal weapons, violating someone's privacy, or providing or creating computer viruses; and
+* contains images, photographs or videos of another person that you have posted without that person's consent.
+
+G. You understand that when using the Stroome Network, Site or the Service, you will be exposed to User Submitted Media from a variety of sources, and that Stroome is not responsible for the accuracy, usefulness, safety, or intellectual property rights of or relating to such User Submitted Media. You further understand and acknowledge that you may be exposed to User Submitted Media that are inaccurate, offensive, indecent, or objectionable, and you agree to waive, and hereby do waive, any legal or equitable rights or remedies you have or may have against Stroome with respect thereto, and agree to indemnify and hold Stroome, its affiliates, and/or licensors, harmless to the fullest extent allowed by law regarding all matters related to your use of the Site, the Stroome Network or the Service.  We do not, and cannot, pre-screen or monitor all User Submitted Media.  You acknowledge that we may not pre-screen User Submitted Media, but that Stroome and its designees shall have the right (but not the obligation) in their sole discretion to refuse posting or moving any User Submitted Media that is available via the Site and/or Service. Without limiting the foregoing, Stroome and its designees shall have the right to remove any User Submitted Media that violates the ToU or is otherwise objectionable, as determined by Stroome in its sole discretion. You agree that you must evaluate, and bear all risks associated with, the use of any User Submitted Media, including any reliance on the accuracy, completeness, or usefulness of such User Submitted Media.  In this regard, you acknowledge that you may not rely on any User Submitted Media submitted to the Stroome Network, Site or Service.
+
+H.  We also reserve the right, at all times and in our sole discretion, to disclose any User Submitted Media (including without limitation chat text) for any reason, including without limitation (i) to satisfy any applicable law, regulation, legal process or governmental request; (ii) to enforce the terms of this ToU or any other agreement; (iii) to protect our legal rights and remedies; (iii) where we feel someone’s health or safety may be threatened; or (v) to report a crime or other offensive behavior.
+
+I.  Stroome does not endorse any User Submitted Media or any opinion, recommendation, or advice expressed therein, and Stroome expressly disclaims any and all liability in connection with User Submitted Media. Stroome does not permit copyright infringing activities and infringement of intellectual property rights on the Site or the Service, and Stroome will remove all User Submitted Media if properly notified that such User Submitted Media infringes on another's intellectual property rights. Stroome reserves the right to remove User Submitted Media without prior notice. Stroome will also terminate a user's access to the Site if they are determined to be a repeat infringer.  
+
+J.  You may be given the opportunity to review and post comments on the Site on User Submitted Media. You are solely responsible for your comments which must adhere to these ToU and any Additional Terms, including, without limitation, submissions guidelines regarding such comments.  Comments containing threats, ethnic slurs, foul language or thinly disguised foul language will be deleted.  Posters who harass others or joke about personal tragedies will be banned permanently from the Site and the Service. Keep it civil, stay on topic and your posts will remain online.  Your posted comments will be deemed “User Submitted Media” as that definition is used in these ToU, and subject to the same requirements and restrictions as User Submitted Media listed in this Section 4.  
+
+### 5.  Third Party Sites
+
+These ToU apply to all users of the Site, including users who are also contributors of video content, information, and other materials, skills or services on the Site, users who access the Site and the Stroome Network, and the Service. The Site may contain links to, or utilize features of, third party websites that are not owned or controlled by Stroome, including, but not limited to, certain aspects and features of the Kaltura Player/Editor . Stroome has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party websites. In addition, Stroome will not, and cannot, censor or edit the content of any third-party site. By using the Site, you expressly relieve Stroome from any and all liability arising from your use of any third-party website, including, without limitation, the Kaltura Player/Editor. Accordingly, we encourage you to be aware when you leave the Site and to read the terms and conditions and privacy policy of the respective websites that you visit.  Additionally, we encourage you to review the terms and conditions as well as privacy policy, of Kaltura regarding the Kaltura Player/Editor, which may be found at corp.kaltura.com.
+
+
+### 6. Intellectual Property Rights
+
+A. As between you and Stroome, the Site and the Service, and all content provided through the Site and the Service (except all User Submitted Media), including without limitation, the text, software, scripts, graphics, photos, sounds, music, videos, interactive features and the like ("Content") and the trademarks, service marks and logos contained therein ("Marks"), are owned by or licensed to Stroome, and is subject to copyright and other intellectual property rights under United States and foreign laws and international conventions.
+
+B. Content and Marks on the Site and through the Service is provided to you AS IS for your information and personal use only and may not be used, copied, reproduced, distributed, transmitted, broadcasted, displayed, sold, licensed, or otherwise exploited for any other purposes whatsoever without the prior written consent of the respective owners. Stroome reserves all rights not expressly granted in and to the Site and the Content.
+
+C. You agree to not engage in the use, copying, or distribution of any of the Content other than expressly permitted herein, including any use, copying, or distribution of User Submitted Media of third parties obtained through the Site for any commercial purposes.
+
+D. You agree not to circumvent, disable or otherwise interfere with security related features of the Site or features that prevent or restrict use or copying of any Content or enforce limitations on use of the Site or the Content therein.
+
+### 7. Warranty Disclaimer
+
+THE SITE, THE STROOME NETWORK AND SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS FOR YOUR USE, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, AND THOSE ARISING FROM COURSE OF DEALING OR USAGE OF TRADE.  STROOME MAKES NO WARRANTY AS TO THE ACCURACY, COMPLETENESS OR RELIABILITY OF ANY CONTENT AND/OR USER SUBMITTED MEDIA AVAILABLE THROUGH THE SITE, THE STROOME NETWORK AND/OR SERVICE.  YOU ARE RESPONSIBLE FOR VERIFYING ANY INFORMATION BEFORE RELYING ON IT.  USE OF THE SITE, THE STROOME NETWORK, THE SERVICE, THE CONTENT AND/OR THE USER SUBMITTED MEDIA AVAILABLE ON THE SITE, THE STROOME NETWORK AND/OR SERVICE IS AT YOUR SOLE RISK.  STROOME DOES NOT WARRANT THAT YOU WILL BE ABLE TO ACCESS OR USE THE SITE, THE STROOME NETWORK AND/OR SERVICE AT THE TIMES OR LOCATIONS OF YOUR CHOOSING; THAT THE SITE, THE STROOME NETWORK OR THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE; THAT DEFECTS WILL BE CORRECTED; OR THAT THE SITE, THE STROOME NETWORK OR THE SERVICE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+
+Because some states or jurisdictions do not allow the disclaimer of implied warranties, the foregoing disclaimer may not apply to you.
+
+### 8. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, STROOME, ITS AFFILIATES, LICENSORS AND BUSINESS PARTNERS DISCLAIM ALL LIABILITY, WHETHER BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, AND FURTHER DISCLAIMS ALL LOSSES, INCLUDING WITHOUT LIMITATION DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, OR SPECIAL DAMAGES ARISING OUT OF OR IN ANY WAY CONNECTED WITH ACCESS TO OR USE OF THE SITE, THE STROOME NETWORK AND/OR SERVICE, EVEN IF STROOME AND/OR RELATED PARTIES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, INCLUDING, WITHOUT LIMITATION, FOR (I) ANY LOST OR CORRUPTED DATA, LOST PROFITS, LOSS OR DAMAGE TO ANY COMPUTER, MOBILE PHONE OR MOBILE DEVICE OR (II) THE COST OF PROCURING SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY. TO THE MAXIMUM EXTENT PERMISSIBLE UNDER APPLICABLE LAW, COMPANY’S AGGREGATE LIABILITY TO YOU OR ANY THIRD PARTY IN ANY CIRCUMSTANCE SHALL NOT EXCEED ONE HUNDRED DOLLARS ($100). 
+
+YOU SPECIFICALLY ACKNOWLEDGE THAT (A) STROOME SHALL NOT BE LIABLE FOR USER SUBMITTED MEDIA OR THE DEFAMATORY, OFFENSIVE, OR ILLEGAL CONDUCT OF ANY THIRD PARTY AND THAT THE RISK OF HARM OR DAMAGE FROM THE FOREGOING RESTS ENTIRELY WITH YOU.
+
+Because some states or jurisdictions do not allow the exclusion or the limitation of liability for consequential or incidental damages, in such states or jurisdictions, the liability of Stroome and its affiliates shall be limited to the fullest extent permitted by law.
+
+### 9. Indemnity
+
+You agree to defend, indemnify and hold harmless Stroome, its parent corporation, officers, directors, employees and agents, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorneys fees) arising from: (i) your use of and access to the Site, Stroome Network or Service; (ii) your violation of any term of these ToU; (iii) your violation of any third party right, including without limitation any copyright, property, or privacy right; or (iv) any claim that one of your User Submitted Media caused damage to a third party. This defense and indemnification obligation will survive these ToU and your use of the Site, Stroome Network or Service.
+
+### 10. Location
+
+The Site and Service is controlled and offered by Stroome from its facilities in the United States of America. Stroome makes no representations that the Site, Stroome Network or Service is appropriate or available for use in other locations. Those who access or use the Site, Stroome Network or Service from other jurisdictions do so at their own volition and are responsible for compliance with local law.
+
+### 11. Children.
+
+The Site, Stroome Network and the Service are not directed toward children under 13 years of age nor does Stroome knowingly collect information from children under 13.  If you are under 13, please do not submit any personally identifiable information to Stroome.
+
+### 12. Copyright Infringement
+
+ Stroome respects the intellectual property rights of others and we ask our users to do the same. If you believe a user of the Site or the Service is infringing your copyright, the copyright of any third party or your intellectual property rights have been otherwise violated, please notify Stroome in accordance with the following procedure: 
+
+All notifications of copyright infringement must be in writing and directed to Stroome’s designated agent at the following mailing address, fax number or email address: 
+
+ Stroome, Inc.
+ Attn: Copyright Agent
+[copyrightagent@stroome.com](mailto:copyrightagent@stroome.com)
+
+Each notification must include the following information: (i) a physical or electronic signature of a person authorized to act on behalf of the owner of the exclusive right that is allegedly infringed, (ii) identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works are covered by a single notification, a representative list of such works, (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed, or access to which is to be disabled, and information reasonably sufficient to permit Stroome to locate the material, (iv) information reasonably sufficient to permit Stroome to contact you, such as an address, telephone number, and, if available, an email address at which you may be contacted; (v) a statement that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law, and (vi) a statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the owner of the exclusive right that is allegedly infringed. 
+
+### 13. Assignment
+
+These ToU, and any rights and licenses granted hereunder, may not be transferred or assigned by you, but may be assigned by Stroome without restriction.
+
+### 14. General
+
+You agree that the Site and Service shall be deemed solely based in California and these ToU shall be governed by the internal substantive laws of the State of California, without respect to its conflict of laws principles. You irrevocably submit to the personal and exclusive jurisdiction of the state and federal courts located within Los Angeles County for all disputes arising out of or related to your use of any of the Stroome Features. You agree not to bring claims on a representative, class member basis, or as a private attorney general. These ToU, together with the Privacy Policy, Additional Terms and any other legal notices or policies published by Stroome on the Site, shall constitute the entire agreement between you and Stroome concerning the Site and the Service. If any provision of these ToU is deemed invalid by a court of competent jurisdiction, the invalidity of such provision shall not affect the validity of the remaining provisions of these ToU, which shall remain in full force and effect.  
+
+No waiver of any term of this these ToU shall be deemed a further or continuing waiver of such term or any other term, and Stroome's failure to assert any right or provision under these ToU shall not constitute a waiver of such right or provision. Stroome reserves the right to amend these ToU at any time and without notice, and it is your responsibility to review these ToU for any changes. Your use of the Site and/or Service following any amendment of these ToU will signify your assent to and acceptance of its revised terms. YOU AND STROOME AGREE THAT ANY CAUSE OF ACTION ARISING OUT OF OR RELATED TO THE SITE, THE SERVICE OR THE STROOME NETWORK MUST COMMENCE WITHIN ONE (1) YEAR AFTER THE CAUSE OF ACTION ACCRUES. OTHERWISE, SUCH CAUSE OF ACTION IS PERMANENTLY BARRED.
+
+If you have any questions about these ToU or your rights or Stroome’s obligations relating to any of the Site or the Service, please email us at [info@stroome.com](mailto:info@stroome.com).

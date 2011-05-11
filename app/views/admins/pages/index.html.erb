@@ -1,0 +1,55 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", admins_pages_path  %></li>
+      <li class="hide"><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_admins_page_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Pages</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.admins_page.title", :default => t("activerecord.labels.title", :default => "Page")) %>
+          </th>
+                    <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+                    <th><%= t("web-app-theme.updated_at", :default => "Updated at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @pages.each do |page| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= page.id %>
+          </td>
+                    <td>
+            <%= link_to page.title, admins_page_path(page) %>
+          </td>
+                    <td>
+            <%= page.created_at %>
+          </td>
+          <td>
+            <%= page.updated_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", admins_page_path(page) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_admins_page_path(page) %> <div class="hide">|
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", admins_page_path(page), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+            </div>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @pages  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

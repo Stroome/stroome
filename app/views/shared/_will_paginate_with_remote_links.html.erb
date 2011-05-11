@@ -1,0 +1,9 @@
+<div style="text-align: right" class="f-tr-uc m-r-15">
+  <%= will_paginate results, :renderer => PaginationListLinkRenderer %>
+</div>
+  <% content_for :script do %>
+  <script>$('.pagination a').attr('data-remote', true);</script>
+  <% end %>
+<% if request.xhr? %>
+  <%= yield :script %>
+<% end %>

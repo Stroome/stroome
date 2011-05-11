@@ -1,0 +1,59 @@
+<div id="my-notification-results" class="widget-box pos-r m-b-20">
+
+  <div class="bar bg-red m-1"></div>
+  
+  <h3 class="_header fg-333 fs-20 p-v-5 f-tr-lc p-h-15">
+    Notifications
+  </h3>
+
+  <div class="m-10">
+    <ul class="m-0 l-ls-n">
+    <% if FBT.enable_project_invite_user %>
+
+      <% if data.size() > 0 %>
+
+        <% data.each do |n| %>
+        <li id="notification_<%= n.id %>">
+          <%= render(
+            :partial => "user_notifications/notification",
+            :locals  => {
+              :notification => n
+            }
+          ) %>
+        </li>
+        <% end %>
+      
+      <% else %>
+
+        <li>No new notifications.</li>
+
+      <% end %>
+        
+    <% else %>
+
+      <p class="m-b-15">
+        Notifications are the best way to stay in touch
+        with the Stroome community. Find out who wants
+        to follow you, and which groups you've been asked
+        to join.
+      </p>
+
+      <p class="fs-16">coming soon</p>
+
+    <% end %>
+    </ul>
+  </div>
+  <div class="border-b18f"></div>
+  <div class="p-v-10 m-1">
+    <%= render(
+      :partial => 'shared/will_paginate_with_remote_links',
+      :locals => { :results => data }
+    ) if FBT.enable_project_invite_user %>
+  </div>
+
+  <div class="foot pos-a">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>

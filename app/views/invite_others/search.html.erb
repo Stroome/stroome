@@ -1,0 +1,123 @@
+<div class="widget-box pos-r border-b18f" id="invite_others_search">
+  <div class="m-h-10 p-v-10">
+    <%= form_tag @invite_search_path,
+                     :id => 'invite_others_search_form',
+                     :method => :get,
+                     :remote => true do %>
+
+    <div>
+      Enter name, email or keyword:
+        <%= text_field_tag :q, params[:q] %>
+        <%= submit_tag "Search" %>
+    </div>
+
+    <% if params[:project_id] %>
+    <div>
+      <ul class="nav m-0 p-v-15 fg-shinyblue">
+        <li class="first p-h-15">
+          <%= radio_button_tag(
+              'filter',
+              'all',
+              params[:filter] == 'all',
+              :class => 'checked-label-highlight visuallyhidden'
+          ) %>
+          <%= label_tag "filter_all", "ALL" %>
+        </li>
+        <li class="p-h-15">
+          <%= radio_button_tag(
+              'filter',
+              'group',
+              params[:filter] == 'group',
+              :class => 'checked-label-highlight visuallyhidden'
+          ) %>
+          <%= label_tag "filter_group", "GROUPS" %>
+        </li>
+        <li class="last p-h-15">
+          <%= radio_button_tag(
+              'filter',
+              'user',
+              params[:filter] == 'user',
+              :class => 'checked-label-highlight visuallyhidden'
+          ) %>
+          <%= label_tag "filter_user", "MEMBERS" %>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+    <% #endif %>
+
+    <% end %>
+    <% #endform %>
+    
+    <ul class="p-0 m-0 l-ls-n border-b18f">
+    <% @search.results.each do |receiver| %>
+      <li class="line media m-h-0 p-h-20">
+
+        <div class="unit size1of3">
+          <div class="d-b pos-r">
+            <%= image_tag(
+                  receiver.picture_url,
+                  :class => 'm-center d-b',
+                  :width => 60,
+                  :height => 60
+            ) %>
+          </div>
+        </div>
+
+        <div class="unit size1of3">
+
+          <h3 class="fs-14 f-b lh-1dot25 f-tr-cp">
+            <%= link_to receiver.title,
+                        ( receiver.instance_of?(User) ?
+                            profile_path(receiver) :
+                            group_path(receiver)
+                        ) %>
+          </h3>
+
+          <p class="p-t-5">
+            <span><%= receiver.description %></span>
+          </p>
+        </div>
+
+
+        <div class="unit size1of3 pos-r">
+          <% if @joinable.already_invited? receiver %>
+            <span>(Invited)</span>
+          <% elsif @joinable.joined? receiver %>
+            <span>(Joined)</span>
+          <% elsif @joinable.can_invite? receiver %>
+            <div id="invite-button-<%= receiver.id %>">
+            <%= form_tag @invite_join_path,
+                         :method => :post,
+                         :remote => true do %>
+
+              <%= hidden_field_tag :receiver_id, receiver.id %>
+              <%= hidden_field_tag :receiver_type, receiver.class.name %>
+              <%= submit_tag "Invite" %>
+            <% end %>
+            </div>
+        </div>
+
+      <% end %>
+      </li>
+    <% end %>
+    </ul>
+
+    <div class="p-t-15 p-b-10">
+      <%= render(
+          :partial => 'shared/will_paginate_with_remote_links',
+          :locals => { :results => @search.results }
+      ) %>
+    </div>
+
+  </div>
+</div>
+<script>
+$(document).ready(function () {
+  var $form = $('#invite_others_search_form');
+
+  $form.find(":radio").bind("change", function() {
+    $form.submit();
+  })
+});
+</script>

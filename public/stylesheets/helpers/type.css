@@ -1,0 +1,46 @@
+/*
+ *  Typography
+ ********************************************/
+.f-tr-lowercase,
+.f-tr-lc { text-transform: lowercase; }
+.f-tr-uppercase,
+.f-tr-uc { text-transform: uppercase; }
+.f-tr-capitalize,
+.f-tr-cp { text-transform: capitalize; }
+.f-ta-l  { text-align: left; }
+.f-ta-r  { text-align: right; }
+.f-ta-c  { text-align: center; }
+
+/* Font Stacks */
+.f-fm-arial { font-family: Arial, Helvetica, Sans-Serif; }
+
+.lh-1dot25 { line-height: 1.25; }
+.lh-1dot5 { line-height: 1.5; }
+.lh-1 { line-height: 1; }
+.lh-30 { line-height: 30px; }
+.lh-34 { line-height: 34px; }
+
+/* Font-size */
+.fs-9  { font-size: 9px; }
+.fs-10 { font-size: 10px; }
+.fs-11 { font-size: 11px; }
+.fs-12 { font-size: 12px; }
+.fs-13 { font-size: 13px; }
+.fs-14 { font-size: 14px; }
+.fs-16, label .required { font-size: 16px; }
+.fs-18 { font-size: 18px; }
+.fs-20 { font-size: 20px; }
+.fs-24 { font-size: 24px; }
+.fs-29 { font-size: 29px; }
+.fs-30 { font-size: 30px; }
+
+/* Bold, Italic, Underline */
+.f-b  { font-weight: 700; }
+.f-sb { font-weight: 600; }
+.f-l { font-weight: 300; }
+.f-i  { font-style: italic; }
+.f-u  { text-decoration: underline; }
+.f-bi { font-weight: bold; font-style: italic; }
+.f-nb { font-weight: 400; }
+.f-nu { text-decoration: none; }
+.f-nbu { font-weight: 400; text-decoration: none; }

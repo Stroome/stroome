@@ -1,0 +1,140 @@
+<div id="<%= list_id %>" class="widget-box pos-r m-b-20">
+  <div class="fs-11">
+    <ul class="l-ls-n m-0">
+    <% if entries.count > 0 %>
+      <% entries.each do |entry| %>
+        <%
+          _is_ref = false
+          if entry.instance_of? InbinClipRef
+            _ref = entry
+            entry = entry.clip
+            _is_ref = true
+          end
+
+          _is_clip = entry.instance_of? Clip
+
+        %>
+        <li class="line m-h-10 p-v-10">
+          <div class="unit size1of3">
+            <%= render(
+              :partial => "shared/thumbnail",
+              :locals  => {
+                :entry => entry,
+                :width => 95,
+                :height => 55,
+                :no_add => _is_clip ? false : true
+              }
+            ) %>
+          </div>
+          <!-- .unit -->
+
+          <div class="unit size2of3 pos-r">
+            <div class="m-l-20">
+              <h4 class="p-r-15">
+                <%= link_to(
+                  entry.title,
+                  entry_path_callback.call(entry, current_user)
+                ) %>
+              </h4>
+
+              <p>by 
+                <%= link_to(
+                  entry.user.username,
+                  profile_path(entry.user),
+                  :rel => "profile",
+                  :class => 'f-b'
+                ) %>
+              </p>
+
+              <div class="m-b-5">
+                <span>Rating: </span>
+                <div class="d-ib"><%= render(
+                  :partial => 'shared/ratings_static',
+                  :locals => { :rate_object => entry }
+                ) %></div> 
+                <span>Views: <%= entry.total_views %></span>
+              </div>
+
+
+              <div class="m-b-10"><%= entry.description %></div>
+
+              <% if _is_ref %>
+
+                <% if params[:add_to_project_id] %>
+
+                  <% unless _ref.used_in_project?(params[:add_to_project_id])   %>
+                    <div id="use-<%= _ref.id %>" class="fs-9">
+                      [<%= link_to(
+                        'Add To Project',
+                        use_inbin_clip_ref_path(_ref, :add_to_project_id => params[:add_to_project_id]),
+                        :method => :post,
+                        :remote => true,
+                        :class => "add_to_project_button"
+                       ) %>]
+                    </div>
+                  <% else %>
+                    <div class="fs-9">[Added To Project]</div>
+                  <% end %>
+                  <% 'end unless' %>
+
+                <% end %>
+                <% 'end :add_to_project_id' %>
+
+                <%= link_to(
+                  "x",
+                  delete_inbin_clip_ref_path(_ref),
+                  :id => "delete-#{ _ref.id }",
+                  :class => "open-lightbox d-b wh-12 lh-1 fg-w bg-999 br-3 f-b pos-tr f-ta-c",
+                ) %>
+
+              <% end %>
+              <% 'end _is_ref' %>
+            </div>
+          </div>
+          <!-- .unit -->
+
+        </li>
+        <!-- .line -->
+      <% end %>
+    <% else %>
+      <li class="line m-h-10 p-v-10">
+        <div>No items found</div>
+      </li>
+    <% end %>
+    </ul>
+
+    <div class="border-b18f"></div>
+    <div class="p-v-10 m-1">
+      <%= render(
+        :partial => 'shared/will_paginate_with_remote_links',
+        :locals => { :results => entries }
+      ) %>
+    </div>
+
+  </div>
+  
+  <div class="foot pos-a">
+    <div class="left-foot fl-l"></div>
+    <div class="right-foot fl-r"></div>
+    <div class="center-foot"></div>
+  </div>
+</div>
+<!-- .widget-box -->
+
+<%= render( :partial => "shared/bind_lightbox_to_links" ) %>
+
+<% if params[:add_to_project_id] %>
+  <% content_for :script do %>
+  <script>
+  $(document).ready(function() {
+     $('a.add_to_project_button').bind("click", function() {
+       $(this).html("Adding To Project..");
+        $(this).css("cursor", "wait").attr("title", "Adding..");
+     });
+  });
+  </script>
+  <% end %>
+  <% if request.xhr? %>
+    <%= yield :script %>
+  <% end %>
+<% end %>
